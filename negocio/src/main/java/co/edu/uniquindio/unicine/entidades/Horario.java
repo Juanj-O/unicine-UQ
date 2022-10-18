@@ -4,22 +4,29 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
-public class Autor implements Serializable {
+public class Horario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Column(nullable = false, length = 100)
-    private String nombre;
+    @Column(nullable = false)
+    private LocalDateTime fecha;
+
+    @OneToMany(mappedBy = "horario")
+    private List<Funcion> funciones;
+
+    @Builder
+    public Horario(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 }

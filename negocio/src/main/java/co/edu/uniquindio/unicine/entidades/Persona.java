@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -31,7 +29,15 @@ public class Persona implements Serializable {
 
     @Email
     @Column(length = 150, nullable = false, unique = true)
-    private String email;
-    @ElementCollection
-    private Map<String, String> telefonos;
+    private String correo;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Builder
+    public Persona(String nombre, String correo, String password) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.password = password;
+    }
 }
