@@ -1,14 +1,14 @@
 package co.edu.uniquindio.unicine.entidades;
 
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Cliente extends Persona implements Serializable {
