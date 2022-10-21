@@ -17,7 +17,6 @@ public class Administrador extends Persona implements Serializable {
     @Column(nullable = false, unique = true)
     private String usuario;
 
-    @Builder
     public Administrador(String nombre, @Email String correo, String password, String usuario) {
         super(nombre, correo, password);
         this.usuario = usuario;

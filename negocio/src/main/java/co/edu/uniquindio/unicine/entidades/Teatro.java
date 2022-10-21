@@ -41,7 +41,7 @@ public class Teatro implements Serializable {
     @OneToMany(mappedBy = "teatro")
     private List<Sala> salas;
 
-    @Builder
+
     public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad, List<Confiteria> confiterias, List<Sala> salas) {
         this.nombre = nombre;
         this.direccion = direccion;

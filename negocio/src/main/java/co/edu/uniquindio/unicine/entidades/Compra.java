@@ -54,7 +54,6 @@ public class Compra implements Serializable {
 
     private List<SillaSala> sillaSala;
 
-    @Builder
     public Compra(MedioPago medioPago, List<Confiteria> confiteria, Cupon cupon, Cliente cliente, Funcion funcion, List<SillaSala> sillaSala /*List<Entrada> entradas*/) {
         this.medioPago = medioPago;
         this.fecha = LocalDateTime.now();

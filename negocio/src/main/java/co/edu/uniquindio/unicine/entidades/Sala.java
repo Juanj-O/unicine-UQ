@@ -31,7 +31,7 @@ public class Sala implements Serializable {
     @JoinColumn(nullable = false)
     private Teatro teatro;
 
-    @Builder
+
     public Sala(String nombre, List<SillaSala> sillaSalas, List<Funcion> funciones, Teatro teatro) {
         this.nombre = nombre;
         this.sillaSalas = sillaSalas;

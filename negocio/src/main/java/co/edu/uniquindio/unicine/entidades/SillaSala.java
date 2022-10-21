@@ -33,7 +33,7 @@ public class SillaSala implements Serializable {
 
     //@OneToMany(mappedBy = "silla_sala")
     //private List<Entrada> entradas;
-    @Builder
+
     public SillaSala(Float precio, Sala sala, Silla silla /*List<Entrada> entradas*/) {
         this.precio = precio;
         this.sala = sala;

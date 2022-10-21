@@ -39,7 +39,7 @@ public class Cupon implements Serializable {
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
-    @Builder
+
     public Cupon(Float descuento, LocalDateTime fechaVencimiento, String descripcion, Boolean estado, Cliente cliente) {
         this.descuento = descuento;
         this.fechaVencimiento = fechaVencimiento;

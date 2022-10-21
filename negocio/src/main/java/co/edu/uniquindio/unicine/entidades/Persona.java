@@ -2,15 +2,12 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.Map;
-
-@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,7 +31,7 @@ public class Persona implements Serializable {
     @Column(nullable = false)
     private String password;
 
-    @Builder
+
     public Persona(String nombre, String correo, String password) {
         this.nombre = nombre;
         this.correo = correo;

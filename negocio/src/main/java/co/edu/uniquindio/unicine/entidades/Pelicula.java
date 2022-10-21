@@ -41,7 +41,7 @@ public class Pelicula implements Serializable {
     @Enumerated(EnumType.STRING)
     private Genero generos;
 
-    @Builder
+
     public Pelicula(String nombre, String imagen, String trailer, String sipnosis, String reparto, String estado, Genero generos) {
         this.nombre = nombre;
         this.imagen = imagen;

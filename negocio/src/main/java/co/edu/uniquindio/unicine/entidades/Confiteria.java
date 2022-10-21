@@ -32,7 +32,7 @@ public class Confiteria implements Serializable {
     @JoinColumn(nullable = false)
     private Teatro teatro;
 
-    @Builder
+
     public Confiteria(Integer codigo, String nombre, String imagen, Float precio) {
         this.nombre = nombre;
         this.imagen = imagen;

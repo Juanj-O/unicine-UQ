@@ -27,7 +27,7 @@ public class Silla implements Serializable {
     @OneToMany(mappedBy = "silla")
     private List<SillaSala> sillaSalas;
 
-    @Builder
+
     public Silla(String fila, String columna, List<SillaSala> sillaSalas) {
         this.fila = fila;
         this.columna = columna;
