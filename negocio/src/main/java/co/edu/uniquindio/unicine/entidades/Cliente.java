@@ -21,9 +21,11 @@ public class Cliente extends Persona implements Serializable {
     private List<String> telefonos;
 
     @OneToMany(mappedBy = "cliente")
+    @ToString.Exclude
     private List<Compra> compras;
 
     @OneToMany(mappedBy = "cliente")
+    @ToString.Exclude
     private List<Cupon> cupones;
 
     public Cliente(String nombre, String correo, String password, String urlFoto, List<String> telefonos) {

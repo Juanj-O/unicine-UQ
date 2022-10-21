@@ -1,0 +1,1 @@
+insert into cliente values("12312", "juan@gmail.com", "Juan", "123123", 1, "ruta foto")

@@ -2,3 +2,4 @@
 /negocio/build/
 *.class
 /.gradle/
+/negocio/src/main/resources/application.properties
