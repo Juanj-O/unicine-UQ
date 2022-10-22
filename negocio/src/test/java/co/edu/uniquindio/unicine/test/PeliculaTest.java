@@ -67,4 +67,11 @@ public class PeliculaTest {
         List<Pelicula> peliculas = peliculaRepo.buscarPeliculasNombre("Hallowen" );
         peliculas.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarPeliculaTeatro(){
+        List<Pelicula> peliculas = peliculaRepo.buscarPeliculasTeatro( );
+        peliculas.forEach(System.out::println);
+    }
 }
