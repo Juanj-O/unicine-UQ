@@ -1,12 +1,14 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
+import co.edu.uniquindio.unicine.entidades.Compra;
 import co.edu.uniquindio.unicine.repo.ClienteRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Arrays;
@@ -64,4 +66,28 @@ public class ClienteTest {
         List<Cliente> lista = clienteRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerClienteEstadoPaginados(){
+        List<Cliente> clientes = clienteRepo.obtenerClientePorEstado(true, PageRequest.of(0,1));
+        clientes.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerListaCompraporCedula(){
+        List<Compra> compras = clienteRepo.obtenerListaCompraporCedula("22222");
+        compras.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerComprasUsuarios(){
+        List<Object[]> compras = clienteRepo.obtenerComprasUsuarios();
+        compras.forEach( o ->
+                System.out.println(o[0] +", "+ o[1])
+                );
+    }
+
 }
