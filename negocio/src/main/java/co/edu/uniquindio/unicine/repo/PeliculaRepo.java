@@ -27,5 +27,10 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     @Query("select p from Teatro t join Sala s on t.codigo = s.teatro.codigo inner join Funcion f on f.sala.codigo = s.codigo inner join " +
             "Pelicula p on p.codigo = f.pelicula.codigo where t.codigo = 1")
     List<Pelicula> buscarPeliculasTeatro();
-    
+
+   
+    @Query("select p from Ciudad c join Teatro t on c.codigo = t.ciudad.codigo inner join Sala s on t.codigo = s.teatro.codigo inner join " +
+            "Funcion f on f.sala.codigo = s.codigo inner join Pelicula p on p.codigo = f.pelicula.codigo where c.codigo = :codigoCiudad")
+    List<Pelicula> buscarPeliculasCiudad(Integer codigoCiudad);
+
 }

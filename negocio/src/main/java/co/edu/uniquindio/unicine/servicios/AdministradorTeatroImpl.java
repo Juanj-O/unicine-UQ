@@ -67,4 +67,9 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio{
     public Horario crearHorario(Horario horario) {
         return null;
     }
+
+    @Override
+    public void eliminarHorario(Integer codigoHorario) {
+
+    }
 }
