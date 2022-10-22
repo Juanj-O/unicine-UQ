@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.swing.*;
 
@@ -30,8 +31,8 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     @Query("select c.cedula from Cliente c left join c.compras comp")
     List<Object[]> obtenerComprasUsuarios();
 
-
-
+    Optional<Cliente> findByCorreo(String correo);
+    Cliente findByCorreoAndPassword(String correo, String password);
 
 
 }
