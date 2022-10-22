@@ -14,5 +14,6 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
             "from Funcion f where f.pelicula.codigo = :codigoPelicula")
     List<Object[]> listarFuncionesPorPelicula(Integer codigoPelicula);
 
+    Funcion findFuncionByCodigo(Integer codigo);
 
 }

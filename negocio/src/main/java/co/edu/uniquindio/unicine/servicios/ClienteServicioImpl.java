@@ -37,14 +37,14 @@ public class ClienteServicioImpl implements ClienteServicio {
     @Override
     public Cliente actualizarCliente(Cliente cliente) throws Exception {
         Cliente guardado = clienteRepo.findClienteByCedula(cliente.getCedula());
-        if (guardado.getCedula() == "") throw new Exception("Cliente no encontrado");
+        if (guardado.getCedula().equals("")) throw new Exception("Cliente no encontrado");
         return clienteRepo.save(cliente);
     }
 
     @Override
     public void eliminarCliente(String cedulaCliente) throws Exception{
         Cliente cliente = clienteRepo.findClienteByCedula(cedulaCliente);
-        if (cliente.getCedula() == "") throw new Exception("Cliente no encontrado");
+        if (cliente.getCedula().equals("")) throw new Exception("Cliente no encontrado");
         clienteRepo.delete(cliente);
     }
 

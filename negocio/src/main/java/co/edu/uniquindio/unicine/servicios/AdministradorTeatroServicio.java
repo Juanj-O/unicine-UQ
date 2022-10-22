@@ -6,27 +6,27 @@ import java.util.List;
 
 public interface AdministradorTeatroServicio {
 
-    AdministradorTeatro login(String correo, String password);
+    AdministradorTeatro login(String correo, String password)throws Exception;
 
-    Teatro crearTeatro(Teatro teatro);
+    Teatro crearTeatro(Teatro teatro) throws Exception;
 
-    void eliminarTeatro(Integer codigoTeatro);
+    void eliminarTeatro(Integer codigoTeatro) throws Exception;
 
     List<Teatro> listarTeatro();
 
-    Funcion crearFuncion(Funcion funcion);
+    Funcion crearFuncion(Funcion funcion) throws Exception;
 
-    void eliminarFuncion(Integer codigoFuncion);
+    void eliminarFuncion(Integer codigoFuncion) throws Exception;
 
     List<Funcion> listarFuncion();
 
-    Sala crearSala(Sala sala);
+    Sala crearSala(Sala sala) throws Exception;
 
-    void eliminarSala(Integer codigoSala);
+    void eliminarSala(Integer codigoSala) throws Exception;
 
     List<Sala> listarSalas();
 
-    Horario crearHorario(Horario horario);
+    Horario crearHorario(Horario horario) throws Exception;
 
-    void eliminarHorario(Integer codigoHorario);
+    void eliminarHorario(Integer codigoHorario) throws Exception;
 }
