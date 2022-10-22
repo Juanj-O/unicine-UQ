@@ -34,4 +34,5 @@ public class Cliente extends Persona implements Serializable {
         this.urlFoto = urlFoto;
         this.telefonos = telefonos;
     }
+
 }

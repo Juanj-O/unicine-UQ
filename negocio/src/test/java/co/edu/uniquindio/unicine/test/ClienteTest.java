@@ -25,7 +25,7 @@ public class ClienteTest {
     public void registrar() {
 
         String[] tels = new String[] {"6547651231", "67876867"};
-        Cliente cliente = new Cliente("111111", "Juan", "juan@gmail.com", "12345", true, "ulrFoto", Arrays.asList(tels));
+        Cliente cliente = new Cliente("12345", "Juan", "juan@gmail.com", "12345", true, "ulrFoto", Arrays.asList(tels));
 
         Cliente guardado = clienteRepo.save(cliente);
         Assertions.assertNotNull(guardado);
