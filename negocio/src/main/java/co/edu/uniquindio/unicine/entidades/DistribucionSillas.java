@@ -15,6 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class DistribucionSillas implements Serializable {
 
     @Id
@@ -43,18 +44,5 @@ public class DistribucionSillas implements Serializable {
         this.filas = filas;
         this.columnas = columnas;
         this.salas = salas;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        DistribucionSillas that = (DistribucionSillas) o;
-        return codigo != null && Objects.equals(codigo, that.codigo);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

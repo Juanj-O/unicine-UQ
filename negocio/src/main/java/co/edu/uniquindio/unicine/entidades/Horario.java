@@ -18,14 +18,19 @@ public class Horario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
+
     @Column(nullable = false)
-    private LocalDateTime fecha;
+    private String dia;
+
+    @Column(nullable = false)
+    private String hora;
 
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 
-
-    public Horario(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public Horario(Integer codigo, String dia, String hora) {
+        this.codigo = codigo;
+        this.dia = dia;
+        this.hora = hora;
     }
 }

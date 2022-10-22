@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,10 +29,8 @@ public class Confiteria implements Serializable {
     @Positive
     private Float precio;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Teatro teatro;
-
+    @OneToMany(mappedBy = "confiteria")
+    private List<Confiteria> confiteria;
 
     public Confiteria(Integer codigo, String nombre, String imagen, Float precio) {
         this.nombre = nombre;

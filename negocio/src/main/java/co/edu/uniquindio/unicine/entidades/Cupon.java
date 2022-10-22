@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,16 +36,15 @@ public class Cupon implements Serializable {
     @OneToOne(mappedBy = "cupon")
     private Compra compra;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Cliente cliente;
 
+    @OneToMany(mappedBy = "cupon")
+    @ToString.Exclude
+    private List<CuponCliente> cupon;
 
-    public Cupon(Float descuento, LocalDateTime fechaVencimiento, String descripcion, Boolean estado, Cliente cliente) {
+    public Cupon(Float descuento, LocalDateTime fechaVencimiento, String descripcion, Boolean estado) {
         this.descuento = descuento;
         this.fechaVencimiento = fechaVencimiento;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.cliente = cliente;
     }
 }

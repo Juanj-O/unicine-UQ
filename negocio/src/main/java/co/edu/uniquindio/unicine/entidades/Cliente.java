@@ -26,10 +26,11 @@ public class Cliente extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "cliente")
     @ToString.Exclude
-    private List<Cupon> cupones;
+    private List<CuponCliente> cuponClientes;
 
-    public Cliente(String nombre, String correo, String password, String urlFoto, List<String> telefonos) {
-        super(nombre, correo, password);
+    public Cliente(String cedula, String nombre, String correo, String password, Boolean estado, String urlFoto, List<String> telefonos) {
+        super(cedula, nombre, correo, password);
+        this.estado = estado;
         this.urlFoto = urlFoto;
         this.telefonos = telefonos;
     }

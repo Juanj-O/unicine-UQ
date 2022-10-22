@@ -35,20 +35,17 @@ public class Teatro implements Serializable {
     @JoinColumn(nullable = false)
     private Ciudad ciudad;
 
-    @OneToMany(mappedBy = "teatro")
-    private List<Confiteria> confiterias;
 
     @OneToMany(mappedBy = "teatro")
     private List<Sala> salas;
 
 
-    public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad, List<Confiteria> confiterias, List<Sala> salas) {
+    public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad, List<Sala> salas) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.administradorTeatro = administradorTeatro;
         this.ciudad = ciudad;
-        this.confiterias = confiterias;
         this.salas = salas;
     }
 }
