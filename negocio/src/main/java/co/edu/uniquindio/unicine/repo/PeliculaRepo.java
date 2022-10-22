@@ -7,17 +7,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
 
-@Query("select distinct f.pelicula from Funcion  f")
-    List<Pelicula> obtenerPeliculasPorFuncion();
+    @Query("select f.pelicula from Funcion  f where f.codigo = :codigo ")
+    Pelicula obtenerPeliculaPorFuncion(Integer codigo);
 
     @Query("select p from Pelicula p where p.estado = :estado")
-    Pelicula obtenerEstado(String estado);
+    List<Pelicula> obtenerEstado(Boolean estado);
 
     @Query("select p from Pelicula p where p.nombre like concat('%', :nombre, '%')and p.estado = :estadoPelicula")
-    List<Pelicula> buscarPeliculas(String nombre, String estadoPelicula);
+    List<Pelicula> buscarPeliculas(String nombre, boolean estadoPelicula);
+
+    @Query("select p from Pelicula p where p.nombre like concat('%', :nombre, '%')")
+    List<Pelicula> buscarPeliculasNombre(String nombre);
+
 
 }

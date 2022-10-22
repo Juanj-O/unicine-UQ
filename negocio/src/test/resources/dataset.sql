@@ -42,11 +42,13 @@ insert into confiteria values (3, "urlImagen", "Palomitas 800 gramos", 85000);
 insert into confiteria values (4, "urlImagen", "Gaseosa 350 ML", 85000);
 insert into confiteria values (5, "urlImagen", "Gaseosa 450 ML", 85000);
 
-insert into pelicula values (1, "activo", "Terror", "imagenPelicula", "Hallowen", "Maicol", "Pelicula de terror", "Hallowen.mp4");
-insert into pelicula values (2, "activo", "Comedia", "imagenPelicula", "Ted", "Oso", "Oso Ted", "Ted.mp4");
-insert into pelicula values (3, "activo", "Accion", "imagenPelicula", "Fast furios", "Carreras", "Carreras", "FastFurios.mp4");
-insert into pelicula values (4, "activo", "Animada", "imagenPelicula", "Toy story", "Juguetes", "Juguetes", "ToyStory.mp4");
-insert into pelicula values (5, "activo", "Accion", "imagenPelicula", "Avenger", "Marvel", "Super heroes", "Avenger.mp4");
+insert into pelicula values (1, true, "imagenPelicula", "Hallowen" , "Maicol" , "Pelicula de terror", "Hallowen.mp4");
+insert into pelicula values (2, true, "imagenPelicula", "Ted", "Oso", "Oso Ted", "Ted.mp4");
+insert into pelicula values (3, true, "imagenPelicula", "Fast furios", "Carreras", "Carreras", "FastFurios.mp4");
+insert into pelicula values (4, true, "imagenPelicula", "Toy story", "Juguetes", "Juguetes", "ToyStory.mp4");
+insert into pelicula values (5, true, "imagenPelicula", "Avenger", "Marvel", "Super heroes", "Avenger.mp4");
+insert into pelicula values (6, true, "imagenPelicula", "Hallowen3" , "Maicol" , "Pelicula de terror", "Hallowen.mp4");
+
 
 
 insert into distribucion_sillas values (1, 10, "", 10, 100);
@@ -129,5 +131,8 @@ insert into entrada values (4, 4, 1, 42000, 4);
 insert into entrada values (5, 5, 1, 52000, 5);
 insert into entrada values (6, 6, 1, 62000, 6);
 
+insert into genero values (1 , "ACCION");
+insert into genero values (2 , "FICCION");
+insert into genero values (3 , "TERROR");
 
 

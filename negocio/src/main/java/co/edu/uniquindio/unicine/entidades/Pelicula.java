@@ -35,20 +35,8 @@ public class Pelicula implements Serializable {
     private String reparto;
 
     @Column(nullable = false)
-    private String estado;
+    private Boolean estado;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Genero generos;
-
-
-    public Pelicula(String nombre, String imagen, String trailer, String sipnosis, String reparto, String estado, Genero generos) {
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.trailer = trailer;
-        this.sipnosis = sipnosis;
-        this.reparto = reparto;
-        this.estado = estado;
-        this.generos = generos;
-    }
+    @ManyToMany(mappedBy = "peliculas")
+    private List<Genero> generos;
 }

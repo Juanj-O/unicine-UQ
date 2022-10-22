@@ -41,17 +41,30 @@ public class PeliculaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerPeliculasFuncion(){
+    public void obtenerPeliculaFuncion(){
 
-        List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorFuncion();
-        peliculas.forEach(System.out::println);
+        Pelicula pelicula = peliculaRepo.obtenerPeliculaPorFuncion(1);
+        System.out.println(pelicula);
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerPeliculaEstado(){
+        List<Pelicula> peliculas = peliculaRepo.obtenerEstado(false);
+        peliculas.forEach(System.out::println);
+    }
 
-        Pelicula peliculas = peliculaRepo.obtenerEstado("activo");
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarPeliculas(){
+        List<Pelicula> peliculas = peliculaRepo.buscarPeliculas("Hallowen" , true);
+        peliculas.forEach(System.out::println);
+    }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarPeliculasNombre(){
+        List<Pelicula> peliculas = peliculaRepo.buscarPeliculasNombre("Hallowen" );
+        peliculas.forEach(System.out::println);
     }
 }
