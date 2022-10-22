@@ -7,6 +7,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FuncionTest {
@@ -41,4 +43,15 @@ public class FuncionTest {
     public void obtenerEntradaCompra(){
 
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarFuncionesPorPelicula(){
+        List<Object[]> funciones = funcionRepo.listarFuncionesPorPelicula(4);
+        funciones.forEach(o ->
+                System.out.println(o[0] +", "+ o[1]+", "+ o[2]+", "+ o[3]+", "+ o[4]+", "+ o[5]+", "+ o[6])
+                );
+
+    }
+
 }

@@ -49,4 +49,12 @@ public class CompraTest {
         List<Entrada> entradas = compraRepo.obtenerEntradaPorCompra(2);
         entradas.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void calcularTotalGastado() {
+       Float sumatoria =compraRepo.calcularTotalGastado("44444");
+       System.out.println(sumatoria);
+    }
+
 }

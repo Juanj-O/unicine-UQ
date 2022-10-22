@@ -112,7 +112,7 @@ insert into cupon values (6, "Cupon", 50, 1, "2022-12-17");
 
 insert into compra values (1, NOW(), "VISA", 50000, "22222", 1, 1);
 insert into compra values (2, NOW(), "PSE", 50000, "22222", 2, 2);
-insert into compra values (3, NOW(), "NEQUI", 50000, "33333", 3, 3);
+insert into compra values (3, NOW(), "NEQUI", 50000, "44444", 3, 3);
 insert into compra values (4, NOW(), "DAVIPLATA", 50000, "44444", 4, 4);
 insert into compra values (5, NOW(), "MASTERCARD", 50000, "55555", 5, 5);
 insert into compra values (6, NOW(), "VISA", 50000, "55555", 6, 6);

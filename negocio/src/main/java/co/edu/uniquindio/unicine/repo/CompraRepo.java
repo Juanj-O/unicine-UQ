@@ -14,5 +14,8 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
     @Query("select e from Compra c join c.entradas e where c.codigo = :codigoCompra")
     List<Entrada> obtenerEntradaPorCompra(Integer codigoCompra);
 
+    @Query("select sum(c.valorTotal) from Compra c where c.cliente.cedula = :cedulaCliente")
+    Float calcularTotalGastado(String cedulaCliente);
+
 
 }
