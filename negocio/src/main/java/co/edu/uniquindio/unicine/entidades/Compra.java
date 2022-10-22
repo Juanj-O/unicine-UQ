@@ -46,22 +46,17 @@ public class Compra implements Serializable {
     @JoinColumn(nullable = false)
     private Funcion funcion;
 
-    //@OneToMany(mappedBy = "compra")
-    //private List<Entrada> entradas;
+    @OneToMany(mappedBy = "compra")
+    private List<Entrada> entradas;
 
-    @ManyToMany
-    @JoinTable(name = "entrada", joinColumns = @JoinColumn(name = "compra_codigo"), inverseJoinColumns = @JoinColumn(name = "silla_sala_codigo"))
-
-    private List<SillaSala> sillaSala;
-
-    public Compra(MedioPago medioPago, List<Confiteria> confiteria, Cupon cupon, Cliente cliente, Funcion funcion, List<SillaSala> sillaSala /*List<Entrada> entradas*/) {
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, List<Confiteria> confiteria, Cupon cupon, Cliente cliente, Funcion funcion, List<Entrada> entradas) {
         this.medioPago = medioPago;
-        this.fecha = LocalDateTime.now();
+        this.fecha = fecha;
+        this.valorTotal = valorTotal;
         this.confiteria = confiteria;
         this.cupon = cupon;
         this.cliente = cliente;
         this.funcion = funcion;
-        this.sillaSala = sillaSala;
-        //this.entradas = entradas;
+        this.entradas = entradas;
     }
 }

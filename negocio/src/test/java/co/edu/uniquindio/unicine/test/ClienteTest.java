@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Arrays;
+import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -19,7 +20,6 @@ public class ClienteTest {
     private ClienteRepo clienteRepo;
 
     @Test
-    @Sql("classpath:dataset.sql")
     public void registrar() {
 
         String[] tels = new String[] {"123123", "12312312"};
@@ -42,6 +42,13 @@ public class ClienteTest {
 
     public void obtener(){
 
+    }
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listar(){
+        List<Cliente> lista = clienteRepo.findAll();
+
+        System.out.println(lista);
     }
 
 

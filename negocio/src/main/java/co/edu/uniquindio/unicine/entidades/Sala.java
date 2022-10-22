@@ -21,8 +21,9 @@ public class Sala implements Serializable {
     @Column(nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "sala")
-    private List<SillaSala> sillaSalas;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private DistribucionSillas distribucionSillas;
 
     @OneToMany(mappedBy = "sala")
     private List<Funcion> funciones;
@@ -31,10 +32,9 @@ public class Sala implements Serializable {
     @JoinColumn(nullable = false)
     private Teatro teatro;
 
-
-    public Sala(String nombre, List<SillaSala> sillaSalas, List<Funcion> funciones, Teatro teatro) {
+    public Sala(String nombre, DistribucionSillas distribucionSillas, List<Funcion> funciones, Teatro teatro) {
         this.nombre = nombre;
-        this.sillaSalas = sillaSalas;
+        this.distribucionSillas = distribucionSillas;
         this.funciones = funciones;
         this.teatro = teatro;
     }
