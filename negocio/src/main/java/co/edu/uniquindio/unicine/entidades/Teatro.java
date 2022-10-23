@@ -40,12 +40,11 @@ public class Teatro implements Serializable {
     private List<Sala> salas;
 
 
-    public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad, List<Sala> salas) {
+    public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.administradorTeatro = administradorTeatro;
         this.ciudad = ciudad;
-        this.salas = salas;
     }
 }

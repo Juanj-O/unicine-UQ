@@ -30,9 +30,9 @@ public class Confiteria implements Serializable {
     private Float precio;
 
     @OneToMany(mappedBy = "confiteria")
-    private List<Confiteria> confiteria;
+    private List<ConfiteriaCompra> confiteria;
 
-    public Confiteria(Integer codigo, String nombre, String imagen, Float precio) {
+    public Confiteria(String nombre, String imagen, Float precio) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.precio = precio;

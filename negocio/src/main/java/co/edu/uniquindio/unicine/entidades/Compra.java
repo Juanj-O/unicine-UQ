@@ -59,4 +59,19 @@ public class Compra implements Serializable {
         this.entradas = entradas;
         this.confiteriaCompras = confiteriaCompras;
     }
+
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion) {
+        this.medioPago = medioPago;
+        this.fecha = fecha;
+        this.valorTotal = valorTotal;
+        this.cupon = cupon;
+        this.cliente = cliente;
+        this.funcion = funcion;
+    }
+
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal) {
+        this.medioPago = medioPago;
+        this.fecha = fecha;
+        this.valorTotal = valorTotal;
+    }
 }

@@ -32,10 +32,9 @@ public class Sala implements Serializable {
     @JoinColumn(nullable = false)
     private Teatro teatro;
 
-    public Sala(String nombre, DistribucionSillas distribucionSillas, List<Funcion> funciones, Teatro teatro) {
+    public Sala(String nombre, DistribucionSillas distribucionSillas, Teatro teatro) {
         this.nombre = nombre;
         this.distribucionSillas = distribucionSillas;
-        this.funciones = funciones;
         this.teatro = teatro;
     }
 }

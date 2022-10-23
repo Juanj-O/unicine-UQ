@@ -2,8 +2,9 @@ package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Compra;
 import co.edu.uniquindio.unicine.entidades.Confiteria;
-import co.edu.uniquindio.unicine.entidades.MedioPago;
-import co.edu.uniquindio.unicine.repo.ConfiteriaRepo;
+import co.edu.uniquindio.unicine.entidades.Entrada;
+import co.edu.uniquindio.unicine.repo.CompraRepo;
+import co.edu.uniquindio.unicine.repo.EntradaRepo;
 import co.edu.uniquindio.unicine.repo.FuncionRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,48 +18,54 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ConfiteriaTest {
+public class EntradaTest {
 
 
     @Autowired
-    private ConfiteriaRepo confiteriaRepo;
+    private EntradaRepo entradaRepo;
+    @Autowired
+    private CompraRepo compraRepo;
 
     @Test
     public void registrar() {
-        Confiteria confiteria = new Confiteria("Crispetas", "UrlImagen", 24000F);
-        Confiteria guardado = confiteriaRepo.save(confiteria);
+        Compra compra = compraRepo.findById(1).orElse(null);
+
+        Entrada entrada = new Entrada(24000F, 2, 2, compra);
+
+        Entrada guardado = entradaRepo.save(entrada);
         Assertions.assertNotNull(guardado);
         System.out.println(guardado);
     }
+
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
-        Confiteria buscado = confiteriaRepo.findById(1).orElse(null);
+        Entrada buscado = entradaRepo.findById(1).orElse(null);
         System.out.println(buscado);
-        confiteriaRepo.delete(buscado);
-        Assertions.assertNotNull(confiteriaRepo.findById(1).orElse(null));
+        entradaRepo.delete(buscado);
+        Assertions.assertNotNull(entradaRepo.findById(1).orElse(null));
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
-        Confiteria buscado = confiteriaRepo.findById(1).orElse(null);
-        buscado.setNombre("Crispetas caramelo");
+        Entrada buscado = entradaRepo.findById(1).orElse(null);
+        buscado.setFila(4);
 
-        Confiteria nuevo = confiteriaRepo.save(buscado);
+        Entrada nuevo = entradaRepo.save(buscado);
 
-        Assertions.assertEquals("Crispetas caramelo",  nuevo.getNombre());
+        Assertions.assertEquals(4,  nuevo.getFila());
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void obtener(){
-        Optional<Confiteria> buscando = confiteriaRepo.findById(1);
+        Optional<Entrada> buscando = entradaRepo.findById(1);
         Assertions.assertNotNull(buscando.orElse(null));
         System.out.println(buscando.orElse(null));
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void listar(){
-        List<Confiteria> lista = confiteriaRepo.findAll();
+        List<Entrada> lista = entradaRepo.findAll();
         lista.forEach(System.out::println);
     }
 }

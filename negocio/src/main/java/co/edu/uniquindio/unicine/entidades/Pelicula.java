@@ -39,4 +39,13 @@ public class Pelicula implements Serializable {
 
     @ManyToMany(mappedBy = "peliculas")
     private List<Genero> generos;
+
+    public Pelicula(String nombre, String imagen, String trailer, String sipnosis, String reparto, Boolean estado) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.trailer = trailer;
+        this.sipnosis = sipnosis;
+        this.reparto = reparto;
+        this.estado = estado;
+    }
 }

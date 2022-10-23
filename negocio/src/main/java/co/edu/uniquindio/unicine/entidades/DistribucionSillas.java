@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -16,6 +13,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class DistribucionSillas implements Serializable {
 
     @Id
@@ -38,11 +36,18 @@ public class DistribucionSillas implements Serializable {
     @OneToMany(mappedBy = "distribucionSillas")
     private List<Sala> salas;
 
-    public DistribucionSillas(String esquema, Integer total_sillas, Integer filas, Integer columnas, List<Sala> salas) {
+    public DistribucionSillas(String esquema, Integer total_sillas, Integer filas, Integer columnas) {
         this.esquema = esquema;
         this.total_sillas = total_sillas;
         this.filas = filas;
         this.columnas = columnas;
-        this.salas = salas;
+    }
+
+    public DistribucionSillas(Integer codigo, String esquema, Integer total_sillas, Integer filas, Integer columnas) {
+        this.codigo = codigo;
+        this.esquema = esquema;
+        this.total_sillas = total_sillas;
+        this.filas = filas;
+        this.columnas = columnas;
     }
 }

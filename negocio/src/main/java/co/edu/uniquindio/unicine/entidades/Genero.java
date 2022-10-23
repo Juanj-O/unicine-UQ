@@ -25,4 +25,8 @@ public class Genero implements Serializable {
     @ManyToMany
     @Column(nullable = false)
     private List<Pelicula> peliculas;
+
+    public Genero(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

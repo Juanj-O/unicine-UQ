@@ -1,10 +1,9 @@
 package co.edu.uniquindio.unicine.test;
 
-import co.edu.uniquindio.unicine.entidades.Compra;
-import co.edu.uniquindio.unicine.entidades.Confiteria;
-import co.edu.uniquindio.unicine.entidades.MedioPago;
-import co.edu.uniquindio.unicine.repo.ConfiteriaRepo;
-import co.edu.uniquindio.unicine.repo.FuncionRepo;
+import co.edu.uniquindio.unicine.entidades.Funcion;
+import co.edu.uniquindio.unicine.entidades.Horario;
+import co.edu.uniquindio.unicine.repo.HorarioRepo;
+import co.edu.uniquindio.unicine.repo.SalaRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,48 +16,48 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ConfiteriaTest {
-
-
+public class HorarioTest {
     @Autowired
-    private ConfiteriaRepo confiteriaRepo;
+    private HorarioRepo horarioRepo;
 
     @Test
     public void registrar() {
-        Confiteria confiteria = new Confiteria("Crispetas", "UrlImagen", 24000F);
-        Confiteria guardado = confiteriaRepo.save(confiteria);
+
+        Horario horario = new Horario("22-12-2022", "19:30");
+        Horario guardado = horarioRepo.save(horario);
+
         Assertions.assertNotNull(guardado);
         System.out.println(guardado);
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
-        Confiteria buscado = confiteriaRepo.findById(1).orElse(null);
+        Horario buscado = horarioRepo.findById(1).orElse(null);
         System.out.println(buscado);
-        confiteriaRepo.delete(buscado);
-        Assertions.assertNotNull(confiteriaRepo.findById(1).orElse(null));
+        horarioRepo.delete(buscado);
+        Assertions.assertNotNull(horarioRepo.findById(1).orElse(null));
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
-        Confiteria buscado = confiteriaRepo.findById(1).orElse(null);
-        buscado.setNombre("Crispetas caramelo");
+        Horario buscado = horarioRepo.findById(1).orElse(null);
+        buscado.setHora("20:45");
 
-        Confiteria nuevo = confiteriaRepo.save(buscado);
+        Horario nuevo = horarioRepo.save(buscado);
 
-        Assertions.assertEquals("Crispetas caramelo",  nuevo.getNombre());
+        Assertions.assertEquals("20:45", nuevo.getHora());
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void obtener(){
-        Optional<Confiteria> buscando = confiteriaRepo.findById(1);
+        Optional<Horario> buscando = horarioRepo.findById(1);
         Assertions.assertNotNull(buscando.orElse(null));
         System.out.println(buscando.orElse(null));
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void listar(){
-        List<Confiteria> lista = confiteriaRepo.findAll();
+        List<Horario> lista = horarioRepo.findAll();
         lista.forEach(System.out::println);
     }
 }

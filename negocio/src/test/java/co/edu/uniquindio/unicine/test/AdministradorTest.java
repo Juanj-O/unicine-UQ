@@ -22,6 +22,7 @@ import java.util.List;
 
 import javax.validation.constraints.Email;
 import java.util.Arrays;
+import java.util.Optional;
 
 
 @DataJpaTest
@@ -44,19 +45,35 @@ public class AdministradorTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
+        Administrador buscado = administradorRepo.findById("11111").orElse(null);
+        System.out.println(buscado);
+        administradorRepo.delete(buscado);
+        Assertions.assertNotNull(administradorRepo.findById("11111").orElse(null));
 
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
+        Administrador buscado = administradorRepo.findById("11111").orElse(null);
+        buscado.setCorreo("correo_nuevo_admin@gmail.com");
 
+        Administrador nuevo = administradorRepo.save(buscado);
+
+        Assertions.assertEquals("correo_nuevo_admin@gmail.com", nuevo.getCorreo());
     }
     @Test
     @Sql("classpath:dataset.sql")
     public void obtener(){
-
+        Optional<Administrador> buscando = administradorRepo.findById("11111");
+        Assertions.assertNotNull(buscando.orElse(null));
+        System.out.println(buscando.orElse(null));
     }
-
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listar(){
+        List<Administrador> lista = administradorRepo.findAll();
+        lista.forEach(System.out::println);
+    }
     @Test
     @Sql("classpath:dataset.sql")
     public void comprobarAutenticacionAdmi(){

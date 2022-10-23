@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +10,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 public class Funcion implements Serializable {
 
     @Id
@@ -39,8 +38,8 @@ public class Funcion implements Serializable {
     @OneToMany(mappedBy = "funcion")
     private List<Compra> compras;
 
-
-    public Funcion(Sala sala, Horario horario, Pelicula pelicula) {
+    public Funcion(Float precio, Sala sala, Horario horario, Pelicula pelicula) {
+        this.precio = precio;
         this.sala = sala;
         this.horario = horario;
         this.pelicula = pelicula;

@@ -28,8 +28,7 @@ public class Horario implements Serializable{
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 
-    public Horario(Integer codigo, String dia, String hora) {
-        this.codigo = codigo;
+    public Horario( String dia, String hora) {
         this.dia = dia;
         this.hora = hora;
     }
