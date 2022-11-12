@@ -23,7 +23,6 @@ insert into ciudad values (5, "Barranquilla");
 
 insert into administrador values("11111", "admin@gmail.com", "Admin", "123123", "admin");
 
-
 insert into administrador_teatro values("1", "admin1@gmail.com", "Admin1",   "123123");
 insert into administrador_teatro values("2", "admin2@gmail.com", "Admin2",   "123123");
 insert into administrador_teatro values("3", "admin3@gmail.com", "Admin3",   "123123");
@@ -48,11 +47,6 @@ insert into pelicula values (3, true, "imagenPelicula", "Fast furios", "Carreras
 insert into pelicula values (4, true, "imagenPelicula", "Toy story", "Juguetes", "Juguetes", "ToyStory.mp4");
 insert into pelicula values (5, true, "imagenPelicula", "Avenger", "Marvel", "Super heroes", "Avenger.mp4");
 insert into pelicula values (6, true, "imagenPelicula", "Hallowen3" , "Maicol" , "Pelicula de terror", "Hallowen.mp4");
-
-/*
-insert into pelicula_generos values (1, "Accion")
-insert into pelicula_generos values (1, "Terror")
-*/
 
 insert into distribucion_sillas values (1, 10, "", 10, 100);
 insert into distribucion_sillas values (2, 10, "", 10, 100);
@@ -87,24 +81,23 @@ insert into sala values (13, "Sala13", 3, 3);
 insert into sala values (14, "Sala14", 4, 3);
 insert into sala values (15, "Sala15", 5, 5);
 
+insert into funcion values (1, 12000, 1, 1);
+insert into funcion values (2, 5500, 2, 2);
+insert into funcion values (3, 7000, 3, 3);
+insert into funcion values (4, 9000, 4, 4);
+insert into funcion values (5, 12000, 5, 5);
+insert into funcion values (6, 18000, 1, 1);
+insert into funcion values (7, 13000, 2, 2);
+insert into funcion values (8, 7000, 3, 3);
+insert into funcion values (9, 7400, 4, 4);
+insert into funcion values (10, 12000, 5, 5);
+insert into funcion values (11, 11000, 1, 1);
 
-insert into horario values (1, "LMXJVSD", "20:00");
-insert into horario values (2, "LMSD", "21:00");
-insert into horario values (3, "SD", "12:00");
-insert into horario values (4, "LJVSD", "15:00");
-insert into horario values (5, "LMXJVSD", "09:00");
-
-insert into funcion values (1, 12000, 1, 1, 1);
-insert into funcion values (2, 5500, 2, 2, 2);
-insert into funcion values (3, 7000, 3, 3, 3);
-insert into funcion values (4, 9000, 4, 4, 4);
-insert into funcion values (5, 12000, 5, 5, 5);
-insert into funcion values (6, 18000, 1, 1, 6);
-insert into funcion values (7, 13000, 2, 2, 7);
-insert into funcion values (8, 7000, 3, 3, 8);
-insert into funcion values (9, 7400, 4, 4, 9);
-insert into funcion values (10, 12000, 5, 5, 10);
-insert into funcion values (11, 11000, 1, 1, 11);
+insert into horario values (1, "LMXJVSD", "20:00", 1);
+insert into horario values (2, "LMSD", "21:00", 2);
+insert into horario values (3, "SD", "12:00", 3);
+insert into horario values (4, "LJVSD", "15:00", 4);
+insert into horario values (5, "LMXJVSD", "09:00", 5);
 
 insert into cupon values (1, "Cupon", 12, 1, "2022-12-17");
 insert into cupon values (2, "Cupon", 22, 1, "2022-12-17");
@@ -113,12 +106,12 @@ insert into cupon values (4, "Cupon", 2, 1, "2022-12-17");
 insert into cupon values (5, "Cupon", 10, 1, "2022-12-17");
 insert into cupon values (6, "Cupon", 50, 1, "2022-12-17");
 
-insert into compra values (1, NOW(), "VISA", 50000, "22222", 1, 1);
-insert into compra values (2, NOW(), "VISA", 50000, "22222", 2, 2);
-insert into compra values (3, NOW(), "NEQUI", 50000, "44444", 3, 3);
-insert into compra values (4, NOW(), "DAVIPLATA", 50000, "44444", 4, 4);
-insert into compra values (5, NOW(), "MASTERCARD", 50000, "55555", 5, 5);
-insert into compra values (6, NOW(), "VISA", 50000, "55555", 6, 6);
+insert into compra values (1, NOW(), "VISA", 50000, "22222", 1, 1, 1);
+insert into compra values (2, NOW(), "VISA", 50000, "22222", 2, 2, 2);
+insert into compra values (3, NOW(), "NEQUI", 50000, "44444", 3, 3, 3);
+insert into compra values (4, NOW(), "DAVIPLATA", 50000, "44444", 4, 4, 4);
+insert into compra values (5, NOW(), "MASTERCARD", 50000, "55555", 5, 5, 5);
+insert into compra values (6, NOW(), "VISA", 50000, "55555", 6, 6, 5);
 
 insert into confiteria_compra values (1, 20000, 2, 1, 1);
 insert into confiteria_compra values (2, 50000, 2, 2, 2);
@@ -127,12 +120,12 @@ insert into confiteria_compra values (4, 70000, 2, 4, 4);
 insert into confiteria_compra values (5, 80000, 2, 5, 5);
 insert into confiteria_compra values (6, 90000, 2, 6, 1);
 
-insert into entrada values (1, 1, 1, 12000, 1);
-insert into entrada values (2, 2, 1, 22000, 2);
-insert into entrada values (3, 3, 1, 32000, 3);
-insert into entrada values (4, 4, 1, 42000, 4);
-insert into entrada values (5, 5, 1, 52000, 5);
-insert into entrada values (6, 6, 1, 62000, 6);
+insert into entrada values (1, 1, 1, 1);
+insert into entrada values (2, 2, 1, 2);
+insert into entrada values (3, 3, 1, 3);
+insert into entrada values (4, 4, 1, 4);
+insert into entrada values (5, 5, 1, 5);
+insert into entrada values (6, 6, 1, 6);
 
 insert into genero values (1 , "ACCION");
 insert into genero values (2 , "FICCION");

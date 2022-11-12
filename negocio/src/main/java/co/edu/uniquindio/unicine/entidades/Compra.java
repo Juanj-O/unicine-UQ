@@ -49,6 +49,10 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compra")
     private List<ConfiteriaCompra> confiteriaCompras;
 
+    @ManyToOne
+    @ToString.Exclude
+    private Horario horario;
+
     public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion, List<Entrada> entradas, List<ConfiteriaCompra> confiteriaCompras) {
         this.medioPago = medioPago;
         this.fecha = fecha;
@@ -60,18 +64,13 @@ public class Compra implements Serializable {
         this.confiteriaCompras = confiteriaCompras;
     }
 
-    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion) {
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion, Horario horario) {
         this.medioPago = medioPago;
         this.fecha = fecha;
         this.valorTotal = valorTotal;
         this.cupon = cupon;
         this.cliente = cliente;
         this.funcion = funcion;
-    }
-
-    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal) {
-        this.medioPago = medioPago;
-        this.fecha = fecha;
-        this.valorTotal = valorTotal;
+        this.horario = horario;
     }
 }

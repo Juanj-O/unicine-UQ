@@ -11,16 +11,15 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Entrada implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
-
-    @Column(nullable = false)
-    private Float precio;
 
     @Column(nullable = false)
     private Integer fila;
@@ -31,23 +30,9 @@ public class Entrada implements Serializable {
     @ManyToOne
     private Compra compra;
 
-    public Entrada(Float precio, Integer fila, Integer columna, Compra compra) {
-        this.precio = precio;
+    public Entrada(Integer fila, Integer columna, Compra compra) {
         this.fila = fila;
         this.columna = columna;
         this.compra = compra;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Entrada entrada = (Entrada) o;
-        return codigo != null && Objects.equals(codigo, entrada.codigo);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }

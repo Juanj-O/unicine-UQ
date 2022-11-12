@@ -35,7 +35,7 @@ public class FuncionTest {
         Horario horario = horarioRepo.findById(1).orElse(null);
         Pelicula pelicula = peliculaRepo.findById(1).orElse(null);
 
-        Funcion funcion = new Funcion(20000F, sala, horario , pelicula);
+        Funcion funcion = new Funcion(20000F, sala , pelicula);
 
         Funcion guardado = funcionRepo.save(funcion);
 

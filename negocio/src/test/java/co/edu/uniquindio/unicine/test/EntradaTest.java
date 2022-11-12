@@ -30,7 +30,7 @@ public class EntradaTest {
     public void registrar() {
         Compra compra = compraRepo.findById(1).orElse(null);
 
-        Entrada entrada = new Entrada(24000F, 2, 2, compra);
+        Entrada entrada = new Entrada(2, 2, compra);
 
         Entrada guardado = entradaRepo.save(entrada);
         Assertions.assertNotNull(guardado);

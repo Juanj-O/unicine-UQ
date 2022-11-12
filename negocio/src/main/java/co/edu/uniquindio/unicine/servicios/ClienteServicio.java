@@ -17,7 +17,7 @@ public interface ClienteServicio {
     void eliminarCliente(String cedulaCliente) throws Exception;
 
     List<Cliente> listarCliente();
-
+    Cliente buscarCliente(String cedula) throws Exception;
     List<Compra> listarHistorial(String cedulaCliente) throws Exception;
 
     Compra hacerCompra(Compra compra) throws Exception;

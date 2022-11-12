@@ -27,21 +27,17 @@ public class Funcion implements Serializable {
     @JoinColumn(nullable = false)
     private Sala sala;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Horario horario;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "funcion")
+    private List<Horario> horario;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Pelicula pelicula;
 
-    @OneToMany(mappedBy = "funcion")
-    private List<Compra> compras;
-
-    public Funcion(Float precio, Sala sala, Horario horario, Pelicula pelicula) {
+    public Funcion(Float precio, Sala sala, Pelicula pelicula) {
         this.precio = precio;
         this.sala = sala;
-        this.horario = horario;
         this.pelicula = pelicula;
     }
 }

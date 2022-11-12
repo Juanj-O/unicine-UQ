@@ -12,7 +12,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class DistribucionSillas implements Serializable {
 

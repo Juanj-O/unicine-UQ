@@ -25,7 +25,7 @@ public class CuponTests {
 
     @Test
     public void registrar() {
-        Cupon cupon = new Cupon(15F, LocalDateTime.now(), "Descuento en boleteria", true);
+        Cupon cupon = new Cupon(15F, LocalDateTime.now(), true, "Descuento en boleteria");
         Cupon guardado = cuponRepo.save(cupon);
         Assertions.assertNotNull(guardado);
         System.out.println(guardado);

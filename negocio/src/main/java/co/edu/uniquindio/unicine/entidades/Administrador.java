@@ -11,7 +11,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Administrador extends Persona implements Serializable {
 
     @Column(nullable = false, unique = true)

@@ -54,6 +54,12 @@ public class ClienteServicioImpl implements ClienteServicio {
     }
 
     @Override
+    public Cliente buscarCliente(String cedula) throws Exception {
+        return clienteRepo.findById(cedula).orElse(null);
+    }
+
+
+    @Override
     public List<Compra> listarHistorial(String cedulaCliente) throws Exception {
         List<Compra> historial = clienteRepo.obtenerListaCompraporCedula(cedulaCliente);
         if (historial.size() == 0) throw new Exception("Cliente no encontrado");

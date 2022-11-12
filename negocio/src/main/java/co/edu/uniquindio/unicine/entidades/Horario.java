@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Horario implements Serializable{
 
@@ -25,8 +26,13 @@ public class Horario implements Serializable{
     @Column(nullable = false)
     private String hora;
 
+    @ManyToOne
+    @ToString.Exclude
+    private Funcion funcion;
+
+    @ToString.Exclude
     @OneToMany(mappedBy = "horario")
-    private List<Funcion> funciones;
+    private List<Compra> compras;
 
     public Horario( String dia, String hora) {
         this.dia = dia;

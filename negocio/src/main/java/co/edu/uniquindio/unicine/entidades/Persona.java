@@ -11,6 +11,7 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Persona implements Serializable {
@@ -30,11 +31,4 @@ public class Persona implements Serializable {
     @Column(nullable = false)
     private String password;
 
-
-    public Persona(String cedula, String nombre, String correo, String password) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.password = password;
-    }
 }

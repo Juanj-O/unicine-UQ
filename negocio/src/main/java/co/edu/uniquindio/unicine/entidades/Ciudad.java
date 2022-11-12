@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ciudad implements Serializable {
 

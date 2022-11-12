@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
 
-    @Query("select f.pelicula.nombre, f.pelicula.estado, f.sala.codigo, f.sala.teatro.direccion, f.horario, f.sala.teatro.ciudad.nombre " +
+    @Query("select f.pelicula.nombre, f.pelicula.estado, f.sala.codigo, f.sala.teatro.direccion, f.horario, " +
+            "f.sala.teatro.ciudad.nombre " +
             "from Funcion f where f.pelicula.codigo = :codigoPelicula")
     List<Object[]> listarFuncionesPorPelicula(Integer codigoPelicula);
 

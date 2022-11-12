@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Pelicula implements Serializable {
@@ -39,6 +40,10 @@ public class Pelicula implements Serializable {
 
     @ManyToMany(mappedBy = "peliculas")
     private List<Genero> generos;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "pelicula")
+    private List<Funcion> funciones;
 
     public Pelicula(String nombre, String imagen, String trailer, String sipnosis, String reparto, Boolean estado) {
         this.nombre = nombre;

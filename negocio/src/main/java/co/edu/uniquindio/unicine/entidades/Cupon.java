@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cupon implements Serializable {
 
@@ -33,18 +34,18 @@ public class Cupon implements Serializable {
     @Column(nullable = false)
     private String descripcion;
 
-    @OneToOne(mappedBy = "cupon")
-    private Compra compra;
-
-
-    @OneToMany(mappedBy = "cupon")
+    @ManyToMany
     @ToString.Exclude
-    private List<CuponCliente> cupon;
+    private List<Cliente> clientes;
 
-    public Cupon(Float descuento, LocalDateTime fechaVencimiento, String descripcion, Boolean estado) {
+    @ToString.Exclude
+    @OneToMany(mappedBy = "cupon")
+    private List<Compra> compras;
+
+    public Cupon(Float descuento, LocalDateTime fechaVencimiento, Boolean estado, String descripcion) {
         this.descuento = descuento;
         this.fechaVencimiento = fechaVencimiento;
-        this.descripcion = descripcion;
         this.estado = estado;
+        this.descripcion = descripcion;
     }
 }

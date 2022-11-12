@@ -11,6 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente extends Persona implements Serializable {
 
     @Column(nullable = false)
