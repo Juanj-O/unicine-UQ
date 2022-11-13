@@ -44,6 +44,7 @@ public class HorarioTest {
         buscado.setHora("20:45");
 
         Horario nuevo = horarioRepo.save(buscado);
+        System.out.println(nuevo);
 
         Assertions.assertEquals("20:45", nuevo.getHora());
     }

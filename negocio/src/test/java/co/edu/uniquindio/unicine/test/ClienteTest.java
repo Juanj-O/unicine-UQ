@@ -49,7 +49,7 @@ public class ClienteTest {
         buscado.setCorreo("juanito@email.com");
 
         Cliente nuevo = clienteRepo.save(buscado);
-
+        System.out.println(nuevo);
         Assertions.assertEquals("juanito@email.com", nuevo.getCorreo());
     }
     @Test
@@ -86,7 +86,7 @@ public class ClienteTest {
     public void obtenerComprasUsuarios(){
         List<Object[]> compras = clienteRepo.obtenerComprasUsuarios();
         compras.forEach( o ->
-                System.out.println(o[0] +", "+ o[1])
+                System.out.println(o)
                 );
     }
 

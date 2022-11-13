@@ -45,6 +45,7 @@ public class ConfiteriaTest {
         buscado.setNombre("Crispetas caramelo");
 
         Confiteria nuevo = confiteriaRepo.save(buscado);
+        System.out.println(nuevo);
 
         Assertions.assertEquals("Crispetas caramelo",  nuevo.getNombre());
     }

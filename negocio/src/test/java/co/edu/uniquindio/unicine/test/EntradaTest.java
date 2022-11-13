@@ -50,6 +50,7 @@ public class EntradaTest {
     public void actualizar(){
         Entrada buscado = entradaRepo.findById(1).orElse(null);
         buscado.setFila(4);
+        System.out.println(buscado);
 
         Entrada nuevo = entradaRepo.save(buscado);
 

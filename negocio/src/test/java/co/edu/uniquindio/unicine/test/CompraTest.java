@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +57,7 @@ public class CompraTest {
         buscado.setMedioPago(MedioPago.VISA);
 
         Compra nuevo = compraRepo.save(buscado);
-
+        System.out.println(nuevo);
         Assertions.assertEquals(MedioPago.VISA, nuevo.getMedioPago());
     }
     @Test

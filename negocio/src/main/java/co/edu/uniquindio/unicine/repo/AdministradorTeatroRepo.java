@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdministradorTeatroRepo extends JpaRepository<AdministradorTeatro, String> {
 
-    @Query("select a from Administrador a where a.correo = :correo and a.password = :password ")
+    @Query("select a from AdministradorTeatro a where a.correo = :correo and a.password = :password ")
     AdministradorTeatro comprobarAutenticacion(String correo, String password);
 
     AdministradorTeatro findAdministradorTeatroByCedula(String cedula);

@@ -47,6 +47,7 @@ public class PeliculaTest {
         buscado.setNombre("Avatar");
 
         Pelicula nuevo = peliculaRepo.save(buscado);
+        System.out.println(nuevo);
 
         Assertions.assertEquals("Avatar", nuevo.getNombre());
     }

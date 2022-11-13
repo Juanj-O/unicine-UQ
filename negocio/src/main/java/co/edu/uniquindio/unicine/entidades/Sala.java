@@ -23,7 +23,7 @@ public class Sala implements Serializable {
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @ToString.Exclude
     private DistribucionSillas distribucionSillas;
 
     @OneToMany(mappedBy = "sala")
@@ -38,4 +38,5 @@ public class Sala implements Serializable {
         this.distribucionSillas = distribucionSillas;
         this.teatro = teatro;
     }
+
 }

@@ -36,7 +36,7 @@ public class AdministradorTeatroTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
-        AdministradorTeatro buscado = administradorTeatroRepo.findById("11111").orElse(null);;
+        AdministradorTeatro buscado = administradorTeatroRepo.findById("1").orElse(null);;
         System.out.println(buscado);
         administradorTeatroRepo.delete(buscado);
         Assertions.assertNotNull(administradorTeatroRepo.findById("11111").orElse(null));
@@ -68,7 +68,8 @@ public class AdministradorTeatroTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void comprobarAutenticacionAdmi(){
-        AdministradorTeatro administradorTeatro = administradorTeatroRepo.comprobarAutenticacion("admin2@gmail.com","123123");
+        AdministradorTeatro administradorTeatro = administradorTeatroRepo.comprobarAutenticacion("admin1@gmail.com","123");
+        System.out.println(administradorTeatro);
         Assertions.assertNotNull(administradorTeatro);
     }
 }

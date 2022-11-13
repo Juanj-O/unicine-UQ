@@ -23,7 +23,7 @@ insert into ciudad values (5, "Barranquilla");
 
 insert into administrador values("11111", "admin@gmail.com", "Admin", "123123", "admin");
 
-insert into administrador_teatro values("1", "admin1@gmail.com", "Admin1",   "123123");
+insert into administrador_teatro values("1", "admin1@gmail.com", "Admin1",   "123");
 insert into administrador_teatro values("2", "admin2@gmail.com", "Admin2",   "123123");
 insert into administrador_teatro values("3", "admin3@gmail.com", "Admin3",   "123123");
 insert into administrador_teatro values("4", "admin4@gmail.com", "Admin4",   "123123");

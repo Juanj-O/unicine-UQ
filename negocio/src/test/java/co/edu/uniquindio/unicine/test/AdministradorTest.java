@@ -58,7 +58,7 @@ public class AdministradorTest {
         buscado.setCorreo("correo_nuevo_admin@gmail.com");
 
         Administrador nuevo = administradorRepo.save(buscado);
-
+        System.out.println(nuevo);
         Assertions.assertEquals("correo_nuevo_admin@gmail.com", nuevo.getCorreo());
     }
     @Test

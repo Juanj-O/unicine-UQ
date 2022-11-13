@@ -58,6 +58,7 @@ public class FuncionTest {
         buscado.setPrecio(25000F);
 
         Funcion nuevo = funcionRepo.save(buscado);
+        System.out.println(nuevo);
 
         Assertions.assertEquals(25000F, nuevo.getPrecio());
     }
@@ -85,7 +86,7 @@ public class FuncionTest {
     public void listarFuncionesPorPelicula(){
         List<Object[]> funciones = funcionRepo.listarFuncionesPorPelicula(4);
         funciones.forEach(o ->
-                System.out.println(o[0] +", "+ o[1]+", "+ o[2]+", "+ o[3]+", "+ o[4]+", "+ o[5]+", "+ o[6])
+                System.out.println(o[0] +", "+ o[1]+", "+ o[2]+", "+ o[3]+", "+ o[4])
                 );
 
     }

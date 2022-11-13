@@ -27,6 +27,8 @@ public class SalaTest {
     @Autowired
     private TeatroRepo teatroRepo;
 
+    @Autowired
+    private FuncionRepo funcionRepo;
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
@@ -66,6 +68,7 @@ public class SalaTest {
         Teatro teatro = teatroRepo.findById(1).orElse(null);
 
         DistribucionSillas distribucionSillas = new DistribucionSillas(30, "Esquema", 100, 10, 10 );
+        System.out.println(distribucionSillas);
 
         Sala sala = new Sala("Sala 50", distribucionSillas, teatro);
 
