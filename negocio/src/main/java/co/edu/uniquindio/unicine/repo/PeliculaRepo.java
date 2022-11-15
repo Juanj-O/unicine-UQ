@@ -25,6 +25,7 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     List<Pelicula> buscarPeliculasNombre(String nombre);
 
     Pelicula findPeliculaByCodigo(Integer codigoPelicula);
+
     @Query("select p from Teatro t join Sala s on t.codigo = s.teatro.codigo inner join Funcion f on f.sala.codigo = s.codigo inner join " +
             "Pelicula p on p.codigo = f.pelicula.codigo where t.codigo = 1")
     List<Pelicula> buscarPeliculasTeatro();
@@ -33,5 +34,9 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     @Query("select p from Ciudad c join Teatro t on c.codigo = t.ciudad.codigo inner join Sala s on t.codigo = s.teatro.codigo inner join " +
             "Funcion f on f.sala.codigo = s.codigo inner join Pelicula p on p.codigo = f.pelicula.codigo where c.codigo = :codigoCiudad")
     List<Pelicula> buscarPeliculasCiudad(Integer codigoCiudad);
+
+    @Query("select f.horario, f.sala from Pelicula p join p.funciones f where p.codigo = :codigoPelicula and f.sala.teatro.codigo = :codigoTeatro ")
+    List<Object[]> listarHorarios(Integer codigoPelicula, Integer codigoTeatro);
+
 
 }

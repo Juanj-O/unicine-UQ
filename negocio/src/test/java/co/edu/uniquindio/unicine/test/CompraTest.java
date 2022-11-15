@@ -24,6 +24,9 @@ public class CompraTest {
     private ClienteRepo clienteRepo;
     @Autowired
     private CuponRepo cuponRepo;
+
+    @Autowired
+    private CuponClienteRepo cuponClienteRepo;
     @Autowired
     private FuncionRepo funcionRepo;
     @Autowired
@@ -32,11 +35,10 @@ public class CompraTest {
     @Sql("classpath:dataset.sql")
     public void registrar() {
         Cliente cliente = clienteRepo.findById("22222").orElse(null);
-        Cupon cupon = cuponRepo.findById(1).orElse(null);
+        CuponCliente cuponCliente = cuponClienteRepo.findById(1).orElse(null);
         Funcion funcion = funcionRepo.findById(1).orElse(null);
         Horario horario = horarioRepo.findById(1).orElse(null);
-        Compra compra = new Compra(MedioPago.NEQUI, LocalDateTime.now(), 42000F, cupon, cliente, funcion, horario);
-
+        Compra compra = new Compra(MedioPago.NEQUI, LocalDateTime.now(), 42000F, cuponCliente, cliente, funcion, horario);
         Compra guardado = compraRepo.save(compra);
         Assertions.assertNotNull(guardado);
         System.out.println(guardado);

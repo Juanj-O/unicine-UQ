@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AdministradorTeatroImpl implements AdministradorTeatroServicio{
+public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
 
     AdministradorTeatroRepo administradorTeatroRepo;
     TeatroRepo teatroRepo;

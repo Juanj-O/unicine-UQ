@@ -25,7 +25,7 @@ public class ClienteServicioTest {
     @Sql("classpath:dataset.sql")
     public void registrarCliente() {
         String[] tels = new String[] {"6547651231", "67876867"};
-        Cliente cliente = new Cliente("11", "Juan", "11@gmail.com", "11", true, "ulrFoto", Arrays.asList(tels));
+        Cliente cliente = new Cliente("222", "Juan", "pruebasunicine@gmail.com", "11123", true, "ulrFoto", Arrays.asList(tels));
         System.out.println(cliente);
         try {
             Cliente clienteRegistrado = clienteServicio.registrarCliente(cliente);
@@ -35,6 +35,17 @@ public class ClienteServicioTest {
 
         } catch (Exception e) {
             System.out.println(e.toString());
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void login() {
+        try {
+            Cliente cliente = clienteServicio.login("luis@gmail.com", "123123");
+            Assertions.assertNotNull(cliente);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.repo;
 
 import co.edu.uniquindio.unicine.entidades.Compra;
+import co.edu.uniquindio.unicine.entidades.ConfiteriaCompra;
 import co.edu.uniquindio.unicine.entidades.Entrada;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,9 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
     Float calcularTotalGastado(String cedulaCliente);
 
 
+    @Query("select ds.esquema from Compra c left join c.funcion.sala.distribucionSillas ds where c.codigo = :codigoCompra")
+    String obtenerDistribucionSillas(Integer codigoCompra);
+
+    @Query("select c from ConfiteriaCompra c where c.codigo = :codigoCompraConfiteria")
+    ConfiteriaCompra obtenerCompraConfiteria (Integer codigoCompraConfiteria);
 }
