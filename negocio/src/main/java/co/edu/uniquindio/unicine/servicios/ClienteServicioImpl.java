@@ -4,6 +4,7 @@ import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.entidades.Compra;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.repo.ClienteRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class ClienteServicioImpl implements ClienteServicio {
 
+    @Autowired
     private ClienteRepo clienteRepo;
 
     public ClienteServicioImpl(ClienteRepo clienteRepo) {
@@ -25,13 +27,18 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public Cliente registrarCliente(Cliente cliente) throws Exception{
-        boolean correoExiste = esCorreoRepetido(cliente.getCorreo());
-        if (correoExiste) throw new Exception("Este correo ya está en uso");
+        if (esCorreoRepetido(cliente.getCorreo())){
+            throw new Exception("Este correo ya está en uso");
+        }
         return clienteRepo.save(cliente);
     }
 
     private boolean esCorreoRepetido(String correo) {
-        return clienteRepo.findByCorreo(correo).orElse(null) == null;
+        Cliente cliente =  clienteRepo.findByCorreo(correo);
+        if (cliente == null){
+            return false;
+        }
+        return true;
     }
 
     @Override
