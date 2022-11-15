@@ -2,16 +2,24 @@ package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.servicios.ClienteServicioImpl;
+import co.edu.uniquindio.unicine.servicios.EmailService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
+@SpringBootTest
+@Transactional
 public class ClienteServicioTest {
     @Autowired
     private ClienteServicioImpl clienteServicio;
+
+    @Autowired
+    private EmailService emailService;
     @Test
     @Sql("classpath:dataset.sql")
     public void registrarCliente() {
@@ -20,9 +28,9 @@ public class ClienteServicioTest {
 
         try {
             Cliente clienteRegistrado = clienteServicio.registrarCliente(cliente);
-            Assertions.assertNotNull(clienteRegistrado);
+            System.out.println(clienteRegistrado);
         } catch (Exception e) {
-            Assertions.assertTrue(false);
+            System.out.println(e.toString());
         }
     }
 
@@ -42,5 +50,10 @@ public class ClienteServicioTest {
         } catch (Exception e) {
             Assertions.assertTrue(false);
         }
+    }
+
+    @Test
+    public void enviarCorreoTest(){
+        emailService.enviarEmail("Prueba de envio" , "Este es un mensaje" , "ahumada1248@gmail.com");
     }
 }
