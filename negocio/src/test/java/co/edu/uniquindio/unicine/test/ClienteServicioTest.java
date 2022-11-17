@@ -66,7 +66,7 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void listar(){
+    public void listarClientes(){
         List<Cliente> lista = clienteServicio.listarCliente();
         lista.forEach(System.out::println);
         Assertions.assertTrue(true);
@@ -84,5 +84,4 @@ public class ClienteServicioTest {
             Assertions.assertTrue(false);
         }
     }
-
 }
