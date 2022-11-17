@@ -34,13 +34,12 @@ public class Cupon implements Serializable {
     @Column(nullable = false)
     private String descripcion;
 
-    @ManyToMany
-    @ToString.Exclude
-    private List<Cliente> clientes;
+    //Relaciones
 
     @ToString.Exclude
     @OneToMany(mappedBy = "cupon")
-    private List<Compra> compras;
+    private List<CuponCliente> cuponCliente;
+
 
     public Cupon(Float descuento, LocalDateTime fechaVencimiento, Boolean estado, String descripcion) {
         this.descuento = descuento;

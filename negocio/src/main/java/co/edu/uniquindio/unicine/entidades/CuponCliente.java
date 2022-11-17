@@ -28,4 +28,14 @@ public class CuponCliente implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cupon cupon;
+
+    @ToString.Exclude
+    @OneToOne
+    private Compra compra;
+
+    public CuponCliente(Boolean estado, Cliente cliente, Cupon cupon) {
+        this.estado = estado;
+        this.cliente = cliente;
+        this.cupon = cupon;
+    }
 }

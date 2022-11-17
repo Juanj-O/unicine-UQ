@@ -14,4 +14,10 @@ public interface AdministradorTeatroRepo extends JpaRepository<AdministradorTeat
 
     AdministradorTeatro findAdministradorTeatroByCedula(String cedula);
 
+    @Query("select at from Teatro t, in (t.administradorTeatro) at where t.codigo = :codigo")
+    AdministradorTeatro obtenerPorTeatro(Integer codigo);
+
+    @Query("select at from AdministradorTeatro at where at.correo = :correo")
+    AdministradorTeatro obtenerPorCorreo(String correo);
+
 }

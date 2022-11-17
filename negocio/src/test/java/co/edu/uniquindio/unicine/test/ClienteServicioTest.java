@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.servicios.ClienteServicioImpl;
+import co.edu.uniquindio.unicine.servicios.EmailService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +18,34 @@ import java.util.List;
 public class ClienteServicioTest {
     @Autowired
     private ClienteServicioImpl clienteServicio;
+
+    @Autowired
+    private EmailService emailService;
     @Test
     @Sql("classpath:dataset.sql")
     public void registrarCliente() {
         String[] tels = new String[] {"6547651231", "67876867"};
-        Cliente cliente = new Cliente("11", "Juan", "11@gmail.com", "11", true, "ulrFoto", Arrays.asList(tels));
+        Cliente cliente = new Cliente("222", "Juan", "pruebasunicine@gmail.com", "11123", true, "ulrFoto", Arrays.asList(tels));
         System.out.println(cliente);
         try {
             Cliente clienteRegistrado = clienteServicio.registrarCliente(cliente);
             System.out.println(clienteRegistrado);
+
             Assertions.assertNotNull(clienteRegistrado);
+
         } catch (Exception e) {
-            Assertions.assertTrue(false);
+            System.out.println(e.toString());
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void login() {
+        try {
+            Cliente cliente = clienteServicio.login("luis@gmail.com", "123123");
+            Assertions.assertNotNull(cliente);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -48,6 +65,11 @@ public class ClienteServicioTest {
         } catch (Exception e) {
             Assertions.assertTrue(false);
         }
+    }
+
+    @Test
+    public void enviarCorreoTest(){
+        emailService.enviarEmail("Prueba de envio" , "Este es un mensaje" , "ahumada1248@gmail.com");
     }
 
     /**

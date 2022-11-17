@@ -32,8 +32,10 @@ public class Compra implements Serializable {
     @Column(nullable = false)
     private Float valorTotal;
 
-    @OneToOne
-    private Cupon cupon;
+    //relaciones
+
+    @OneToOne(mappedBy = "compra")
+    private CuponCliente cuponCliente;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -53,22 +55,23 @@ public class Compra implements Serializable {
     @ToString.Exclude
     private Horario horario;
 
-    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion, List<Entrada> entradas, List<ConfiteriaCompra> confiteriaCompras) {
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, CuponCliente cuponCliente, Cliente cliente, Funcion funcion, List<Entrada> entradas, List<ConfiteriaCompra> confiteriaCompras) {
         this.medioPago = medioPago;
         this.fecha = fecha;
         this.valorTotal = valorTotal;
-        this.cupon = cupon;
+        this.cuponCliente = cuponCliente;
         this.cliente = cliente;
         this.funcion = funcion;
         this.entradas = entradas;
         this.confiteriaCompras = confiteriaCompras;
     }
 
-    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, Cupon cupon, Cliente cliente, Funcion funcion, Horario horario) {
+
+    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, CuponCliente cuponCliente, Cliente cliente, Funcion funcion, Horario horario) {
         this.medioPago = medioPago;
         this.fecha = fecha;
         this.valorTotal = valorTotal;
-        this.cupon = cupon;
+        this.cuponCliente = cuponCliente;
         this.cliente = cliente;
         this.funcion = funcion;
         this.horario = horario;

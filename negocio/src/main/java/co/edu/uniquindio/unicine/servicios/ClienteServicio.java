@@ -26,4 +26,8 @@ public interface ClienteServicio {
 
     List<Pelicula> buscarPeliculas(String nombrePelicula) throws Exception;
 
+    Cliente obtenerCliente(String cedula) throws Exception;
+
+    Compra obtenerCompra(Integer codigoCompra) throws Exception;
+
 }
