@@ -6,4 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Transactional
 public class AdministradorServicioTest {
+
+
 }
