@@ -19,17 +19,19 @@ public class ClienteServicioImpl implements ClienteServicio {
     private final PeliculaRepo peliculaRepo;
     @Autowired
     private final CompraRepo compraRepo;
-
     @Autowired
     private final EmailService emailService;
     @Autowired
     private final FuncionRepo funcionRepo;
-
+    @Autowired
     private final CuponClienteRepo cuponClienteRepo;
-
+    @Autowired
     private final CiudadRepo ciudadRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CompraRepo compraRepo, EmailService emailService, FuncionRepo funcionRepo, CuponClienteRepo cuponClienteRepo, CiudadRepo ciudadRepo) {
+    @Autowired
+    private final TeatroRepo teatroRepo;
+
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CompraRepo compraRepo, EmailService emailService, FuncionRepo funcionRepo, CuponClienteRepo cuponClienteRepo, CiudadRepo ciudadRepo, TeatroRepo teatroRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
         this.compraRepo = compraRepo;
@@ -37,7 +39,7 @@ public class ClienteServicioImpl implements ClienteServicio {
         this.funcionRepo = funcionRepo;
         this.cuponClienteRepo = cuponClienteRepo;
         this.ciudadRepo = ciudadRepo;
-
+        this.teatroRepo = teatroRepo;
     }
 
     @Override
@@ -73,8 +75,7 @@ public class ClienteServicioImpl implements ClienteServicio {
         textEncryptor.setPassword("teclado");
         String parametro1 = textEncryptor.encrypt(registro.getCorreo());
 
-        emailService.enviarEmail("Bienvenido",
-                "Te has registrado en nuestra plataforma, Para confirmar tu correo, ingresa al siguiente link: " + ""+parametro1, cliente.getCorreo());
+        // emailService.enviarEmail("Bienvenido", "Te has registrado en nuestra plataforma, Para confirmar tu correo, ingresa al siguiente link: " + ""+parametro1, cliente.getCorreo());
         return registro;
     }
 
@@ -107,7 +108,35 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public Cliente buscarCliente(String cedula) throws Exception {
-        return clienteRepo.findById(cedula).orElse(null);
+        Cliente clienteAux = clienteRepo.findClienteByCedula(cedula);
+        if (clienteAux == null){
+            throw new Exception("El Cliente no existe");
+        }
+        return clienteRepo.findClienteByCedula(cedula);
+    }
+
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
+    }
+
+    @Override
+    public List<Teatro> listarTeatrosCiudad(Integer codigoCiudad) throws Exception {
+        Ciudad ciudad = ciudadRepo.findById(codigoCiudad).orElse(null);
+        if(ciudad == null){
+            throw new Exception("La ciudad no existe");
+        }
+        return teatroRepo.listarTeatrosByCiudad(codigoCiudad);
+    }
+
+    @Override
+    public List<Pelicula> listarPeliculasCartelera(Integer codigoTeatro) throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<Funcion> listarFuncionesPelicula(Integer codigoPelicula, Integer codigoTeatro) throws Exception {
+        return null;
     }
 
     @Override
@@ -127,6 +156,11 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public Compra hacerCompra(Compra compra) throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<Compra> listarCompras(Integer codigoCliente) {
         return null;
     }
 
@@ -176,6 +210,11 @@ public class ClienteServicioImpl implements ClienteServicio {
     @Override
     public Compra obtenerCompra(Integer codigoCompra) throws Exception {
         return compraRepo.findById(codigoCompra).orElseThrow( () -> new Exception("No se encontró la compra"));
+    }
+
+    @Override
+    public Compra aplicarDescuentoCupon(Compra compra, Cupon cupon) throws Exception {
+        return null;
     }
 
 }

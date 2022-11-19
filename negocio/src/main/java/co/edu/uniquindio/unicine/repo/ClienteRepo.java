@@ -17,6 +17,9 @@ import javax.swing.*;
 @Repository
 public interface ClienteRepo extends JpaRepository<Cliente, String> {
 
+    @Query("select c from Cliente c where c.correo = :correo")
+    Cliente obtenerClientePorCorreo (String correo);
+
     @Query("select c from Cliente c where c.estado = :estado")
     List<Cliente> obtenerClientePorEstado(boolean estado, Pageable paginador);
 
@@ -35,11 +38,9 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
 
     Cliente findByCorreoAndPassword(String correo, String password);
 
-    @Query("select c from Cliente c where c.correo = :correo")
-    Cliente obtenerClientePorCorreo (String correo);
-
     @Query("select cup.cupon from Cliente cli left join cli.cuponClientes cup where cup.cliente.cedula = :cedula")
     List<Cupon> obtenerCuponesCliente(String cedula);
 
-
+    @Query("select c.nombre, vent from Cliente c left join c.ventas vent")
+    List<Object[]> obtenerComprasTodos();
 }

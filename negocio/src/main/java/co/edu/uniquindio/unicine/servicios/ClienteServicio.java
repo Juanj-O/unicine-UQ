@@ -1,8 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
-import co.edu.uniquindio.unicine.entidades.Cliente;
-import co.edu.uniquindio.unicine.entidades.Compra;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
+import co.edu.uniquindio.unicine.entidades.*;
 
 import java.util.List;
 
@@ -17,10 +15,28 @@ public interface ClienteServicio {
     void eliminarCliente(String cedulaCliente) throws Exception;
 
     List<Cliente> listarCliente();
+
     Cliente buscarCliente(String cedula) throws Exception;
-    List<Compra> listarHistorial(String cedulaCliente) throws Exception;
+
+    List<Ciudad> listarCiudades();
+
+    List<Teatro> listarTeatrosCiudad(Integer codigoCiudad) throws Exception;
+
+    List<Pelicula> listarPeliculasCartelera(Integer codigoTeatro) throws Exception;
+
+    List<Funcion> listarFuncionesPelicula(Integer codigoPelicula, Integer codigoTeatro) throws Exception;
 
     Compra hacerCompra(Compra compra) throws Exception;
+
+    List<Compra> listarCompras(Integer codigoCliente);
+
+
+    Compra obtenerCompra(Integer codigoCompra) throws Exception;
+
+    Compra aplicarDescuentoCupon(Compra compra, Cupon cupon) throws Exception;
+
+    List<Compra> listarHistorial(String cedulaCliente) throws Exception;
+
 
     boolean redimirCupon(Integer codigoCuenta) throws Exception;
 
@@ -28,6 +44,5 @@ public interface ClienteServicio {
 
     Cliente obtenerCliente(String cedula) throws Exception;
 
-    Compra obtenerCompra(Integer codigoCompra) throws Exception;
 
 }

@@ -16,26 +16,42 @@ public interface AdministradorServicio {
 
     Pelicula crearPelicula(Pelicula pelicula) throws Exception;
 
+    Pelicula actualizarPelicula(Pelicula pelicula) throws Exception;
+
     void eliminarPelicula(Integer codigoPelicula) throws Exception;
 
-    List<Pelicula> listarPeliculas();
+    Pelicula consultarPelicula(Integer codigoPelicula) throws Exception;
+
+    List<Pelicula> listarPeliculas();Pelicula registrarPelicula(Pelicula pelicula) throws Exception;
 
     Confiteria crearConfiteria(Confiteria confiteria) throws Exception;
+
+    Confiteria actualizarConfiteria(Confiteria confiteria) throws Exception;
 
     void eliminarConfiteria(Integer codigoConfiteria) throws Exception;
 
     List<Confiteria> listarConfiteria();
 
+    Confiteria consultarConfiteria(Integer codigoConfiteria) throws Exception;
+
     Cupon crearCupon(Cupon cupon) throws Exception;
+
+    Cupon actualizarCupon(Cupon cupon) throws Exception;
 
     void eliminarCupon(Integer codigoCupon) throws Exception;
 
     List<Cupon> listarCupones();
 
+    Cupon consultarCupon(Integer codigoCupon) throws Exception;
+
     Ciudad crearCiudad(Ciudad ciudad) throws Exception;
+
+    Ciudad actualizarCiudad(Ciudad ciudad) throws Exception;
 
     void eliminarCiudad(Integer codigoCiudad) throws Exception;
 
     List<Ciudad> listarCiudades();
+
+    Ciudad consultarCiudad(Integer codigoCiudad) throws Exception;
 
 }

@@ -110,21 +110,21 @@ insert into genero values (1 , "ACCION");
 insert into genero values (2 , "FICCION");
 insert into genero values (3 , "TERROR");
 
-/**
-insert into compra values (1, NOW(), "VISA", 50000, "22222", 1, 1, 1);
-insert into compra values (2, NOW(), "VISA", 50000, "22222", 2, 2, 2);
-insert into compra values (3, NOW(), "NEQUI", 50000, "44444", 3, 3, 3);
-insert into compra values (4, NOW(), "DAVIPLATA", 50000, "44444", 4, 4, 4);
-insert into compra values (5, NOW(), "MASTERCARD", 50000, "55555", 5, 5, 5);
-insert into compra values (6, NOW(), "VISA", 50000, "55555", 6, 6, 5);
+
+insert into compra values (1, NOW(), "VISA", 50000, "11111", 1, 1);
+insert into compra values (2, NOW(), "VISA", 50000, "22222", 2, 2);
+insert into compra values (3, NOW(), "NEQUI", 50000, "44444", 3, 3);
+insert into compra values (4, NOW(), "DAVIPLATA", 50000, "44444", 4, 4);
+insert into compra values (5, NOW(), "MASTERCARD", 50000, "55555", 5, 5);
+insert into compra values (6, NOW(), "VISA", 50000, "55555", 6, 5);
 
 
-insert into confiteria_compra values (1, 20000, 2, 1, 1);
-insert into confiteria_compra values (2, 50000, 2, 2, 2);
-insert into confiteria_compra values (3, 60000, 2, 3, 3);
-insert into confiteria_compra values (4, 70000, 2, 4, 4);
-insert into confiteria_compra values (5, 80000, 2, 5, 5);
-insert into confiteria_compra values (6, 90000, 2, 6, 1);
+insert into confiteria_compra values (1, 20000, 5, 1, 1);
+insert into confiteria_compra values (2, 50000, 5, 2, 2);
+insert into confiteria_compra values (3, 60000, 5, 3, 3);
+insert into confiteria_compra values (4, 70000, 5, 4, 4);
+insert into confiteria_compra values (5, 80000, 5, 5, 5);
+insert into confiteria_compra values (6, 90000, 5, 6, 1);
 
 
 insert into entrada values (1, 1, 1, 1);
@@ -133,7 +133,7 @@ insert into entrada values (3, 3, 1, 3);
 insert into entrada values (4, 4, 1, 4);
 insert into entrada values (5, 5, 1, 5);
 insert into entrada values (6, 6, 1, 6);
-**/
+
 
 
 

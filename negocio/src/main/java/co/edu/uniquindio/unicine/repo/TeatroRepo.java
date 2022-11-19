@@ -19,4 +19,7 @@ public interface TeatroRepo extends JpaRepository<Teatro, Integer> {
     List<Teatro> buscarTeatro(String nombre, String nombreCiudad);
 
     Teatro findTeatroByCodigo(Integer codigoTeatro);
+
+    @Query("select t from Teatro t where t.ciudad.codigo = :codigoCiudad")
+    List<Teatro> listarTeatrosByCiudad(Integer codigoCiudad);
 }
