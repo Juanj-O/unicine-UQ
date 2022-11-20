@@ -1,6 +1,8 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,6 +18,8 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AdministradorTeatro extends Persona implements Serializable {
 
+    @JsonIgnore
+    @ToStringExclude
     @OneToMany(mappedBy = "administradorTeatro")
     private List<Teatro> teatros;
 

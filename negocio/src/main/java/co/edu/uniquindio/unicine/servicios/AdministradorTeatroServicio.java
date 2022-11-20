@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
+import co.edu.uniquindio.unicine.dtos.CrearTeatroDTO;
 import co.edu.uniquindio.unicine.entidades.*;
 
 import java.util.List;
@@ -8,7 +9,7 @@ public interface AdministradorTeatroServicio {
 
     AdministradorTeatro login(String correo, String password)throws Exception;
 
-    Teatro crearTeatro(Teatro teatro) throws Exception;
+    Teatro crearTeatro(CrearTeatroDTO teatro) throws Exception;
 
     Teatro actualizarTeatro(Teatro teatro) throws Exception;
 

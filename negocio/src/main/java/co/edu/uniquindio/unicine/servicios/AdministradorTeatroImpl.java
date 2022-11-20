@@ -1,7 +1,9 @@
 package co.edu.uniquindio.unicine.servicios;
 
+import co.edu.uniquindio.unicine.dtos.CrearTeatroDTO;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repo.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,16 +11,22 @@ import java.util.List;
 @Service
 public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
 
+    @Autowired
     AdministradorTeatroRepo administradorTeatroRepo;
+    @Autowired
     TeatroRepo teatroRepo;
+    @Autowired
     FuncionRepo funcionRepo;
+    @Autowired
     SalaRepo salaRepo;
-
+    @Autowired
     HorarioRepo horarioRepo;
 
-    public AdministradorTeatroImpl(AdministradorTeatroRepo administradorTeatroRepo){
+    @Autowired
+    CiudadRepo ciudadRepo;
 
-    }
+    @Autowired
+    AdministradorImpl administradorImpl;
 
     @Override
     public AdministradorTeatro login(String correo, String password) throws Exception {
@@ -28,9 +36,18 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     @Override
-    public Teatro crearTeatro(Teatro teatro) throws Exception {
-        boolean teatroExiste = esTeatroRepetido(teatro.getNombre(), teatro.getCiudad().getNombre());
-        if (teatroExiste) throw new Exception("El teatro ya eiste");
+    public Teatro crearTeatro(CrearTeatroDTO teatroDto) throws Exception {
+        Ciudad ciudad = administradorImpl.consultarCiudad(teatroDto.getIdCiudad());
+        AdministradorTeatro administradorTeatro= administradorTeatroRepo.findAdministradorTeatroByCedula(teatroDto.getIdAdministradorTeatro());
+        Teatro teatroAux = teatroRepo.findTeatroByNombre(teatroDto.getNombre());
+        if(administradorTeatro == null) {
+            throw new Exception("El Administrador de teatro no existe");
+        } else if (teatroAux != null) {
+            throw new Exception("Ya existe un teatro con ese nombre");
+        }
+        Teatro teatro = new Teatro(teatroDto.getNombre(), teatroDto.getDireccion(),
+                teatroDto.getTelefono(), administradorTeatro, ciudad);
+
         return teatroRepo.save(teatro);
     }
 
@@ -38,10 +55,6 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     public Teatro actualizarTeatro(Teatro teatro) throws Exception {
         verificarTeatro(teatro.getCodigo());
         return teatroRepo.save(teatro);
-    }
-
-    private boolean esTeatroRepetido(String nombre, String ciudad) {
-        return teatroRepo.buscarTeatro(nombre, ciudad) != null;
     }
 
     @Override

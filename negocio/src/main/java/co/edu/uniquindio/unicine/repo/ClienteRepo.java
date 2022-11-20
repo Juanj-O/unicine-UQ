@@ -41,6 +41,6 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     @Query("select cup.cupon from Cliente cli left join cli.cuponClientes cup where cup.cliente.cedula = :cedula")
     List<Cupon> obtenerCuponesCliente(String cedula);
 
-    @Query("select c.nombre, vent from Cliente c left join c.ventas vent")
+    @Query("select c.nombre, vent from Cliente c left join c.compras vent")
     List<Object[]> obtenerComprasTodos();
 }

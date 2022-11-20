@@ -12,7 +12,7 @@ public interface AdministradorServicio {
 
     void eliminarAdminTeatro(String cedulaAdminTeatro) throws Exception;
 
-    List<AdministradorTeatro> listarAdminTeatro(String cedulaAdminTeatro) throws Exception;
+    List<AdministradorTeatro> listarAdminTeatro() throws Exception;
 
     Pelicula crearPelicula(Pelicula pelicula) throws Exception;
 
@@ -22,7 +22,9 @@ public interface AdministradorServicio {
 
     Pelicula consultarPelicula(Integer codigoPelicula) throws Exception;
 
-    List<Pelicula> listarPeliculas();Pelicula registrarPelicula(Pelicula pelicula) throws Exception;
+    List<Pelicula> listarPeliculas();
+
+    Pelicula registrarPelicula(Pelicula pelicula) throws Exception;
 
     Confiteria crearConfiteria(Confiteria confiteria) throws Exception;
 
@@ -33,6 +35,7 @@ public interface AdministradorServicio {
     List<Confiteria> listarConfiteria();
 
     Confiteria consultarConfiteria(Integer codigoConfiteria) throws Exception;
+    Confiteria consultarConfiteria(String nombre) throws Exception;
 
     Cupon crearCupon(Cupon cupon) throws Exception;
 

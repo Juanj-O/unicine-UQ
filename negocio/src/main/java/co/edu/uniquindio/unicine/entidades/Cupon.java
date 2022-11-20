@@ -1,5 +1,7 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +28,7 @@ public class Cupon implements Serializable {
     private Float descuento;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaVencimiento;
 
     @Column(nullable = false)
@@ -35,7 +38,7 @@ public class Cupon implements Serializable {
     private String descripcion;
 
     //Relaciones
-
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> cuponCliente;

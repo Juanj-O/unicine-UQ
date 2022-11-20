@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,9 +39,11 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private Boolean estado;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "peliculas")
     private List<Genero> generos;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<Funcion> funciones;

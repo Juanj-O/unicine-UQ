@@ -9,8 +9,6 @@ dependencies {
     implementation 'com.cloudinary:cloudinary-http44:1.33.0'
     implementation 'org.jasypt:jasypt:1.9.3'
 
-
-
 }
 test {
     useJUnitPlatform()

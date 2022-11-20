@@ -12,6 +12,8 @@ public interface CuponRepo extends JpaRepository<Cupon, Integer> {
 
     Cupon findByCodigo(Integer codigoCupon);
 
+    Cupon findByDescripcion(String descripcion);
+
     @Query("select c from Cupon c where c.descuento = :descuento")
     List<Cupon> listarCuponesPorDescuento(Float descuento);
 

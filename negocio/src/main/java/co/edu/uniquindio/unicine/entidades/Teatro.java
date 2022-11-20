@@ -1,6 +1,8 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Teatro implements Serializable {
 
@@ -26,22 +29,23 @@ public class Teatro implements Serializable {
     private String direccion;
 
     @Column(nullable = false)
-    private Integer telefono;
-
+    private String telefono;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
     private AdministradorTeatro administradorTeatro;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
     private Ciudad ciudad;
 
-
+    @JsonIgnore
+    @ToStringExclude
     @OneToMany(mappedBy = "teatro")
     private List<Sala> salas;
 
 
-    public Teatro(String nombre, String direccion, Integer telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad) {
+    public Teatro(String nombre, String direccion, String telefono, AdministradorTeatro administradorTeatro, Ciudad ciudad) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;

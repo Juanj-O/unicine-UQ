@@ -24,9 +24,6 @@ public class AdministradorImpl implements AdministradorServicio{
     @Autowired
     private CiudadRepo ciudadRepo;
 
-    public AdministradorImpl(AdministradorRepo administradorRepo) {
-    }
-
     @Override
     public Administrador login(String correo, String password) throws Exception {
         Administrador administrador = administradorRepo.comprobarAutenticacion(correo, password);
@@ -36,13 +33,15 @@ public class AdministradorImpl implements AdministradorServicio{
 
     @Override
     public AdministradorTeatro registrarAdminTeatro(AdministradorTeatro administradorTeatro) throws Exception {
-        boolean correoExiste = esCorreoRepetido(administradorTeatro.getCorreo());
-        if (correoExiste) throw new Exception("Este correo ya está en uso");
+        boolean existe = esCorreoRepetido(administradorTeatro.getCorreo());
+        if (existe){
+            throw new Exception("Este correo ya está en uso");
+        }
         return administradorTeatroRepo.save(administradorTeatro);
     }
 
     private boolean esCorreoRepetido(String correo) {
-        return administradorRepo.findByCorreo(correo).orElse(null) == null;
+        return administradorTeatroRepo.obtenerPorCorreo(correo) != null;
     }
 
     @Override
@@ -53,7 +52,7 @@ public class AdministradorImpl implements AdministradorServicio{
     }
 
     @Override
-    public List<AdministradorTeatro> listarAdminTeatro(String cedulaAdminTeatro) throws Exception {
+    public List<AdministradorTeatro> listarAdminTeatro() throws Exception {
         List<AdministradorTeatro> listaAdminTeatros = administradorTeatroRepo.findAll();
         if (listaAdminTeatros.size() == 0) throw new Exception("Lista no encontrada");
         return listaAdminTeatros;
@@ -73,7 +72,7 @@ public class AdministradorImpl implements AdministradorServicio{
     }
 
     private boolean esPeliculaRepetida(String nombre){
-        return peliculaRepo.buscarPeliculasNombre(nombre) == null;
+        return peliculaRepo.buscarPeliculasNombre(nombre).size() > 0;
     }
 
     @Override
@@ -90,11 +89,16 @@ public class AdministradorImpl implements AdministradorServicio{
     }
 
     @Override
+    public List<Pelicula> listarPeliculas() {
+        return peliculaRepo.findAll();
+    }
+
+    @Override
     public Confiteria crearConfiteria(Confiteria confiteria) throws Exception {
-        Confiteria confiteriaAux = consultarConfiteria(confiteria.getCodigo());
+        Confiteria confiteriaAux = confiteriaRepo.findConfiteriaByNombre(confiteria.getNombre());
         if(confiteriaAux != null)
         {
-            throw new Exception("La pelicula ya está registrada en el sistema");
+            throw new Exception("La pelicula ya está registrada");
         }
         return confiteriaRepo.save(confiteria);
     }
@@ -124,12 +128,16 @@ public class AdministradorImpl implements AdministradorServicio{
     }
 
     @Override
+    public Confiteria consultarConfiteria(String nombre) throws Exception {
+        return null;
+    }
+
+    @Override
     public Cupon crearCupon(Cupon cupon) throws Exception{
-        Cupon cuponAux = consultarCupon(cupon.getCodigo());
+        Cupon cuponAux = cuponRepo.findByDescripcion(cupon.getDescripcion());
         if(cuponAux != null)
         {
             throw new Exception("El cupon ya está registrado en el sistema");
-
         }
         return cuponRepo.save(cupon);
     }
@@ -161,7 +169,7 @@ public class AdministradorImpl implements AdministradorServicio{
 
     @Override
     public Ciudad crearCiudad(Ciudad ciudad) throws Exception {
-        Ciudad ciudadAux = consultarCiudad(ciudad.getCodigo());
+        Ciudad ciudadAux = ciudadRepo.findCiudadByNombre(ciudad.getNombre());
 
         if(ciudadAux != null) throw new Exception("La ciudad ya está registrado en el sistema");
 
@@ -202,15 +210,10 @@ public class AdministradorImpl implements AdministradorServicio{
     }
 
     private void verificarPeliculaCodgio(Integer codigoPelicula) throws Exception {
-
         Pelicula pelicula = peliculaRepo.findById(codigoPelicula).orElse(null);
         if (pelicula == null){
             throw new Exception("La pelicula no existe");
         }
-    }
-    @Override
-    public List<Pelicula> listarPeliculas() {
-        return peliculaRepo.findAll();
     }
 
 
