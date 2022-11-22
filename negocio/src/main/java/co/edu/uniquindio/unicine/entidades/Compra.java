@@ -1,5 +1,7 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +28,7 @@ public class Compra implements Serializable {
     private MedioPago medioPago;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha;
 
     @Positive
@@ -44,27 +47,17 @@ public class Compra implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Funcion funcion;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "compra")
     private List<Entrada> entradas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "compra")
     private List<ConfiteriaCompra> confiteriaCompras;
 
     @ManyToOne
     @ToString.Exclude
     private Horario horario;
-
-    public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, CuponCliente cuponCliente, Cliente cliente, Funcion funcion, List<Entrada> entradas, List<ConfiteriaCompra> confiteriaCompras) {
-        this.medioPago = medioPago;
-        this.fecha = fecha;
-        this.valorTotal = valorTotal;
-        this.cuponCliente = cuponCliente;
-        this.cliente = cliente;
-        this.funcion = funcion;
-        this.entradas = entradas;
-        this.confiteriaCompras = confiteriaCompras;
-    }
 
 
     public Compra(MedioPago medioPago, LocalDateTime fecha, Float valorTotal, CuponCliente cuponCliente, Cliente cliente, Funcion funcion, Horario horario) {

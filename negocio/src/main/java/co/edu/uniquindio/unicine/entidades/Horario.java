@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Horario implements Serializable{
 
@@ -30,6 +32,7 @@ public class Horario implements Serializable{
     @ToString.Exclude
     private Funcion funcion;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "horario")
     private List<Compra> compras;

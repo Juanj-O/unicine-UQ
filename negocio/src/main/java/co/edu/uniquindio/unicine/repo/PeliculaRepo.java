@@ -15,6 +15,9 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     @Query("select f.pelicula from Funcion  f where f.codigo = :codigo ")
     Pelicula obtenerPeliculaPorFuncion(Integer codigo);
 
+    Pelicula findByCodigo(Integer codigo);
+
+
     @Query("select p from Pelicula p where p.estado = :estado")
     List<Pelicula> obtenerEstado(Boolean estado);
 

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HorarioRepo extends JpaRepository<Horario, Integer> {
 
-
+    Horario findByCodigo(Integer codigoHorario);
 }

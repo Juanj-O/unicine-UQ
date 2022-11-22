@@ -1,6 +1,8 @@
 package co.edu.uniquindio.unicine.servicios;
 
-import co.edu.uniquindio.unicine.dtos.CrearTeatroDTO;
+import co.edu.uniquindio.unicine.dtos.FuncionDTO;
+import co.edu.uniquindio.unicine.dtos.SalaDTO;
+import co.edu.uniquindio.unicine.dtos.TeatroDTO;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,12 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     CiudadRepo ciudadRepo;
 
     @Autowired
+    PeliculaRepo peliculaRepo;
+
+    @Autowired
+    DistribucionSillasRepo distribucionSillasRepo;
+
+    @Autowired
     AdministradorImpl administradorImpl;
 
     @Override
@@ -36,7 +44,7 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     @Override
-    public Teatro crearTeatro(CrearTeatroDTO teatroDto) throws Exception {
+    public Teatro crearTeatro(TeatroDTO teatroDto) throws Exception {
         Ciudad ciudad = administradorImpl.consultarCiudad(teatroDto.getIdCiudad());
         AdministradorTeatro administradorTeatro= administradorTeatroRepo.findAdministradorTeatroByCedula(teatroDto.getIdAdministradorTeatro());
         Teatro teatroAux = teatroRepo.findTeatroByNombre(teatroDto.getNombre());
@@ -52,9 +60,22 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     @Override
-    public Teatro actualizarTeatro(Teatro teatro) throws Exception {
-        verificarTeatro(teatro.getCodigo());
-        return teatroRepo.save(teatro);
+    public Teatro actualizarTeatro(TeatroDTO teatroDto) throws Exception {
+        Ciudad ciudad = administradorImpl.consultarCiudad(teatroDto.getIdCiudad());
+        AdministradorTeatro administradorTeatro= administradorTeatroRepo.findAdministradorTeatroByCedula(teatroDto.getIdAdministradorTeatro());
+        if(administradorTeatro == null) {
+            throw new Exception("El Administrador de teatro no existe");
+        }
+        System.out.println(teatroDto);
+        Teatro teatroAux = teatroRepo.findTeatroByCodigo(teatroDto.getCodigo());
+        if (teatroAux==null) throw new Exception("No existe el teatro");
+        teatroAux.setDireccion(teatroDto.getDireccion());
+        teatroAux.setNombre(teatroDto.getNombre());
+        teatroAux.setTelefono(teatroDto.getTelefono());
+        teatroAux.setCiudad(ciudad);
+        teatroAux.setAdministradorTeatro(administradorTeatro);
+
+        return teatroRepo.save(teatroAux);
     }
 
     @Override
@@ -74,14 +95,22 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     @Override
-    public Funcion crearFuncion(Funcion funcion) throws Exception {
-        verificarFuncion(funcion.getCodigo());
+    public Funcion crearFuncion(FuncionDTO funcionDto) throws Exception {
+        Pelicula pelicula = peliculaRepo.findByCodigo(funcionDto.getCodigoPelicula());
+        Sala sala = salaRepo.findByCodigo(funcionDto.getCodigoSala());
+        if (pelicula == null){
+            throw new Exception("La pelicula no existe");
+        } else if (sala == null) {
+            throw new Exception("La sala no existe");
+        }
+        Funcion funcion = new Funcion(funcionDto.getPrecio(), sala, pelicula );
         return funcionRepo.save(funcion);
     }
 
     @Override
-    public Funcion actualizarFuncion(Funcion funcion) throws Exception {
-        verificarFuncion(funcion.getCodigo());
+    public Funcion actualizarFuncion(FuncionDTO funcionDto) throws Exception {
+        Funcion funcion = verificarFuncion(funcionDto.getCodigo());
+        funcion.setPrecio(funcionDto.getPrecio());
         return funcionRepo.save(funcion);
     }
 
@@ -104,16 +133,47 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     @Override
-    public Sala crearSala(Sala sala) throws Exception {
-        validarSala(sala);
+    public Sala crearSala(SalaDTO salaDto) throws Exception {
+        Pelicula pelicula = peliculaRepo.findByCodigo(salaDto.getCodigoPelicula());
+        Teatro teatro = teatroRepo.findTeatroByCodigo(salaDto.getCodigoTeatro());
+        DistribucionSillas distribucionSillas = distribucionSillasRepo.findByCodigo(salaDto.getCodigoDistribucionSillas());
+
+        if (pelicula == null) {
+            throw new Exception("La pelicula no existe");
+        } else if (teatro == null) {
+            throw new Exception("El teatro no existe");
+        } else if (distribucionSillas == null) {
+            throw new Exception("La distribucion de sillas no existe");
+        }
+        Sala sala = new Sala(salaDto.getNombre(), distribucionSillas, teatro);
+
         return salaRepo.save(sala);
     }
 
     @Override
-    public Sala actualizarSala(Sala sala) throws Exception {
-        verificarSalaCodgio(sala.getCodigo());
-        return salaRepo.save(sala);
+    public Sala actualizarSala(SalaDTO salaDto) throws Exception {
+        Pelicula pelicula = peliculaRepo.findByCodigo(salaDto.getCodigoPelicula());
+        Teatro teatro = teatroRepo.findTeatroByCodigo(salaDto.getCodigoTeatro());
+        DistribucionSillas distribucionSillas = distribucionSillasRepo.findByCodigo(salaDto.getCodigoDistribucionSillas());
+        Sala salaAux = salaRepo.findByCodigo(salaDto.getCodigo());
+        if (pelicula == null) {
+            throw new Exception("La pelicula no existe");
+        } else if (teatro == null) {
+            throw new Exception("El teatro no existe");
+        } else if (distribucionSillas == null) {
+            throw new Exception("La distribucion de sillas no existe");
+        } else if (salaAux == null) {
+            throw new Exception("La sala no existe");
+        }
+        salaAux.setNombre(salaDto.getNombre());
+        salaAux.setTeatro(teatro);
+        salaAux.setDistribucionSillas(distribucionSillas);
+        salaAux.setTeatro(teatro);
+
+        return salaRepo.save(salaAux);
     }
+
+
 
     @Override
     public void eliminarSala(Integer codigoSala) throws Exception {
@@ -134,7 +194,7 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
 
     @Override
     public Horario crearHorario(Horario horario) throws Exception {
-        verificarHorario(horario.getCodigo());
+
         return horarioRepo.save(horario);
     }
 
@@ -147,12 +207,13 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     @Override
     public void eliminarHorario(Integer codigoHorario) throws Exception {
         Horario horario = consultarHorario(codigoHorario);
+
         horarioRepo.delete(horario);
     }
 
     @Override
     public List<Horario> listarHorarios()  {
-        return null;
+        return horarioRepo.findAll();
     }
 
     @Override
@@ -168,11 +229,12 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
         }
     }
 
-    private void verificarFuncion(Integer codigoFuncion) throws Exception {
+    private Funcion verificarFuncion(Integer codigoFuncion) throws Exception {
         Funcion funcion = funcionRepo.findById(codigoFuncion).orElse(null);
         if (funcion == null){
             throw new Exception("La función no existe");
         }
+        return funcion;
     }
 
     private void validarSala(Sala sala) throws Exception {
@@ -188,14 +250,14 @@ public class AdministradorTeatroImpl implements AdministradorTeatroServicio {
     }
 
     private void verificarSalaCodgio (Integer codigoSala) throws Exception {
-        Sala sala = salaRepo.findById(codigoSala).orElse(null);
+        Sala sala = salaRepo.findByCodigo(codigoSala);
         if (sala == null){
             throw new Exception("la sala no existe");
         }
     }
 
     private void verificarHorario(Integer codigoHorarioFuncion) throws Exception {
-        Horario horario = horarioRepo.findById(codigoHorarioFuncion).orElse(null);
+        Horario horario = horarioRepo.findByCodigo(codigoHorarioFuncion);
         if (horario == null){
             throw new Exception("El horario no existe");
         }

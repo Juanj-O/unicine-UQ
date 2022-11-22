@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,14 +24,17 @@ public class Funcion implements Serializable {
     @Column(nullable = false)
     private Float precio;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
     private Sala sala;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "funcion")
     private List<Horario> horario;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
     private Pelicula pelicula;

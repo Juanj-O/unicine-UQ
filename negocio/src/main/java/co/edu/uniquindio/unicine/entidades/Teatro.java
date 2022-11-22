@@ -32,10 +32,12 @@ public class Teatro implements Serializable {
     private String telefono;
     @JsonIgnore
     @ManyToOne
+    @ToStringExclude
     @JoinColumn(nullable = false)
     private AdministradorTeatro administradorTeatro;
     @JsonIgnore
     @ManyToOne
+    @ToStringExclude
     @JoinColumn(nullable = false)
     private Ciudad ciudad;
 
@@ -52,4 +54,5 @@ public class Teatro implements Serializable {
         this.administradorTeatro = administradorTeatro;
         this.ciudad = ciudad;
     }
+
 }

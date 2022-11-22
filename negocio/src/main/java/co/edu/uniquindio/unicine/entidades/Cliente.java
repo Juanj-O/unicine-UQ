@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,10 +23,12 @@ public class Cliente extends Persona implements Serializable {
     @ElementCollection
     private List<String> telefonos;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     @ToString.Exclude
     private List<Compra> compras;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     @ToString.Exclude
     private List<CuponCliente> cuponClientes;

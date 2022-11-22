@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
+import co.edu.uniquindio.unicine.dtos.CompraDTO;
 import co.edu.uniquindio.unicine.entidades.*;
 
 import java.util.List;
@@ -26,9 +27,9 @@ public interface ClienteServicio {
 
     List<Funcion> listarFuncionesPelicula(Integer codigoPelicula, Integer codigoTeatro) throws Exception;
 
-    Compra hacerCompra(Compra compra) throws Exception;
+    Compra hacerCompra(CompraDTO compra) throws Exception;
 
-    List<Compra> listarCompras(Integer codigoCliente);
+    List<Compra> listarCompras(String codigoCliente);
 
 
     Compra obtenerCompra(Integer codigoCompra) throws Exception;
@@ -36,9 +37,6 @@ public interface ClienteServicio {
     Compra aplicarDescuentoCupon(Compra compra, Cupon cupon) throws Exception;
 
     List<Compra> listarHistorial(String cedulaCliente) throws Exception;
-
-
-    boolean redimirCupon(Integer codigoCuenta) throws Exception;
 
     List<Pelicula> buscarPeliculas(String nombrePelicula) throws Exception;
 

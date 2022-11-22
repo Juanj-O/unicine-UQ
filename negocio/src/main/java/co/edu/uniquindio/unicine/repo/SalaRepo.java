@@ -21,5 +21,5 @@ public interface SalaRepo extends JpaRepository<Sala, Integer> {
 
     @Query("select s from Sala s where s.distribucionSillas=:distribucion")
     List<Sala> obtenerSalasPorDistribucion(Integer distribucion);
-    Optional<Sala> findByCodigo(Integer integer);
+    Sala findByCodigo(Integer integer);
 }

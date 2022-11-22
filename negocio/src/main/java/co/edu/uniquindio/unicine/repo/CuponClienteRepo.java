@@ -13,6 +13,8 @@ public interface CuponClienteRepo extends JpaRepository<CuponCliente, Integer> {
     @Query("select c.cuponCliente from Compra c where c.codigo = :codigoCompra")
     CuponCliente obtenerClienteCupon(Integer codigoCompra);
 
+    CuponCliente findByCodigo(Integer codigoCuponCliente);
+
     @Query("select c from Cupon c where c.codigo = :codigo")
     Cupon obtenerCupon(Integer codigo);
 }
