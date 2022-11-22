@@ -165,7 +165,7 @@ public class ClienteServicioImpl implements ClienteServicio {
     public Compra hacerCompra(CompraDTO compraDto) throws Exception {
         Cliente cliente = clienteRepo.findClienteByCedula(compraDto.getCedula());
         Horario horario = horarioRepo.findByCodigo(compraDto.getCodigoHorario());
-        CuponCliente cuponCliente = CuponRepo.findByCodigo(compraDto.getCodigoCupon());
+        CuponCliente cuponCliente = cuponClienteRepo.findByCodigo(compraDto.getCodigoCupon());
         Funcion funcion = funcionRepo.findFuncionByCodigo(compraDto.getCodigoFuncion());
 
         if(cliente == null){

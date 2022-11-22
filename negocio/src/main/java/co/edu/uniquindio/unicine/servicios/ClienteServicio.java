@@ -34,7 +34,7 @@ public interface ClienteServicio {
 
     Compra obtenerCompra(Integer codigoCompra) throws Exception;
 
-    Compra aplicarDescuentoCupon(Compra compra, Cupon cupon) throws Exception;
+    Compra aplicarDescuentoCupon(Compra compra, CuponCliente cupon) throws Exception;
 
     List<Compra> listarHistorial(String cedulaCliente) throws Exception;
 
