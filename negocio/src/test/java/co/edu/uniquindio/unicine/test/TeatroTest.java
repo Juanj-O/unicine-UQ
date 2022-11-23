@@ -31,7 +31,7 @@ public class TeatroTest {
         AdministradorTeatro administradorTeatro = administradorRepo.findById("1").orElse(null);
         Ciudad ciudad = ciudadRepo.findById(1).orElse(null);
 
-        Teatro teatro =new Teatro("Unicentro", "Centro", 34335, administradorTeatro, ciudad);
+        Teatro teatro =new Teatro("Unicentro", "Centro", "34335", administradorTeatro, ciudad);
         Teatro guardado = teatroRepo.save(teatro);
 
         Assertions.assertNotNull(guardado);
